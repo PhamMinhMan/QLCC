@@ -1,6 +1,6 @@
 package edu.uit.qlcc.common;
 
-public class Worktime {
+public class Worktime extends Base{
 	private String empCode;
 	private String calYmd;
 	private String wrkClass;

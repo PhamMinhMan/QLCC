@@ -8,10 +8,9 @@
 <link rel="stylesheet" href="pages/css/register.css">
 </head>
 <body>
-	<h1>Login Form</h1>
 	<div>
 		<h2>Register</h2>
-		<s:form action="registerInput" method="post" theme="simple">
+		<s:form  method="post" theme="simple">
 			<div>
 				<table>
 					<tr>
@@ -22,46 +21,33 @@
 						<td>Employee Name</td>
 						<td>Lê Văn Tám</td>
 						<td>Date</td>
-						<td>2017/1/15</td>
+						<td>
+							<%--<s:property value="#session.date" /> --%> 
+							<s:property value="registerDate" />
+						</td>
 					</tr>
 					<tr>
 						<td>Working Class</td>
-						<td><s:select headerKey="-1" headerValue="Select Month"
-								list="#{'1':'Value 1', '2':'Value 2', '3':'Value 3', '4':'Value 4'}"
-								name="yourMonth2" value="2" /></td>
+						<td><s:select list="workingClassList" name="workingclass"
+								value="01" /></td>
 					</tr>
 					<tr>
 						<td>Start Time</td>
 						<td>
-							<%-- 						<s:doubleselect  --%> <%-- 								list="#{'1':'Value 1', '2':'Value 2', '3':'Value 3', '4':'Value 4'}" --%>
-							<%-- 								name="hour" value="2" --%> <%-- 								doubleList="#{'1':'Value 1', '2':'Value 2', '3':'Value 3', '4':'Value 4'}" --%>
-							<%-- 								doubleName="minute" doubleValue="3" /> --%> 
 							<s:select
-								headerKey="-1" headerValue="Select Month"
-								list="#{'1':'Val 1', '2':'Val 2', '3':'Val 3', '4':'Val 4'}"
-								name="yourMonth2" value="2" /> 
-								<s:select headerKey="-1"
-								headerValue="Select Month"
-								list="#{'1':'Val 1', '2':'Val 2', '3':'Val 3', '4':'Val 4'}"
-								name="yourMonth2" value="2" />
+								list="hourList" name="starttime_hh" value="" /> <s:select
+								list="minuteList" name="starttime_mm" value="" />
 						</td>
 						<td>Start Class</td>
-						<td><s:select headerKey="-1" headerValue="Select Month"
-								list="#{'1':'Value 1', '2':'Value 2', '3':'Value 3', '4':'Value 4'}"
-								name="yourMonth3" value="2" /></td>
+						<td><s:select list="startClassList" name="startclass"
+								value="00" /></td>
 					</tr>
 					<tr>
 						<td>End Time</td>
-						<td><s:select headerKey="-1" headerValue="Select Month"
-								list="#{'1':'Val 1', '2':'Val 2', '3':'Val 3', '4':'Val 4'}"
-								name="yourMonth2" value="2" /> <s:select headerKey="-1"
-								headerValue="Select Month"
-								list="#{'1':'Val 1', '2':'Val 2', '3':'Val 3', '4':'Val 4'}"
-								name="yourMonth2" value="2" /></td>
+						<td><s:select list="hourList" name="endtime_hh" value="" />
+							<s:select list="minuteList" name="endtime_mm" value="" /></td>
 						<td>End Class</td>
-						<td><s:select headerKey="-1" headerValue="Select Month"
-								list="#{'1':'Value 1', '2':'Value 2', '3':'Value 3', '4':'Value 4'}"
-								name="yourMonth1" value="2" /></td>
+						<td><s:select list="endClassList" name="endclass" value="00" /></td>
 					</tr>
 					<tr>
 						<td>Note</td>
@@ -69,12 +55,10 @@
 								cols="40" rows="10" /></td>
 					</tr>
 				</table>
-				<%-- 				<s:textfield name="employee.empCode" label="Employee Code" /> --%>
-				<%-- 				<s:password name="employee.empPassword" label="Password" /> --%>
 			</div>
 			<div>
-<%-- 				<s:submit value="Back" align="left" /> --%>
-				<s:submit  value="Register" align="right" />
+				<s:submit action="back" value="Back" align="left" />
+				<s:submit action="registerInput" value="Register" align="right" />
 			</div>
 		</s:form>
 	</div>

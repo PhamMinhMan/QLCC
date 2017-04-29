@@ -12,7 +12,7 @@
 	<h1>Input Date</h1>
 
 
-	<s:form action="inputdate" method="post">
+	<s:form>
 
 		<tr>
 			<td>Company Name:</td>
@@ -23,14 +23,13 @@
 			<td>YYYYYYYYYYY</td>
 		</tr>
 
+		<sx:datetimepicker name="date" label="Date"
+			displayFormat="dd-MM-yyyy" value="%{'today'}"/>
 
-		<sx:datetimepicker name="inputdate" label="Date"
-			displayFormat="dd-MM-yyyy" value="todayDate" />
 
-
-		<s:submit action="back" key="Back" />
-		<s:submit action="search" key="Search" />
-		<s:submit action="register" key="Register" />
+		<s:submit action="back" key="back" method="doBack"/>
+		<s:submit action="search" key="search" method="doSearch"/>
+		<s:submit action="register" key="register" method="doRegister"/>
 	</s:form>
 </body>
 </html>

@@ -4,17 +4,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
+<link rel="stylesheet" href="pages/css/style.css">
 <link rel="stylesheet" href="pages/css/login.css">
 </head>
 <body>
-	<h1>Login Form</h1>
-	<div class="module form-module">
+	<div class="module">
 		<div class="form">
-			<h2>Login to your account</h2>
+			<h1 >Login to your account</h1>
 			<s:form action="login" method="post">
 				<s:textfield name="employee.empCode" label="Employee Code"/>
 				<s:password name="employee.empPassword" label="Password"/>
-				<s:submit method="execute" key="login" align="center" />
+				<s:submit method="execute" key="login" align="center" cssClass="login"/>
 			</s:form>
 		</div>
 	</div>
