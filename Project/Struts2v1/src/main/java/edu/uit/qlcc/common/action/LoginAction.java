@@ -37,7 +37,8 @@ public class LoginAction extends BaseAction implements ModelDriven<Object>, Sess
 		String pass = employee.getEmpPassword();
 		EmployeeDao empDao = new EmployeeDao();
 		if (empDao.loginEmployee(ecode, pass)) {
-			//Map<String, Object> session = ActionContext.getContext().getSession();
+			// Map<String, Object> session =
+			// ActionContext.getContext().getSession();
 			// HttpSession session =
 			// ServletActionContext.getRequest().getSession();
 			session.put(SESSION_EMPLOYEE_CODE, ecode);
@@ -48,23 +49,27 @@ public class LoginAction extends BaseAction implements ModelDriven<Object>, Sess
 
 	@Override
 	public void validate() {
-		// if("".equals(employee.getEmpCode())){
-		// addFieldError("employee.empCode", getText("error.empCode"));
-		// }
-		// if("".equals(employee.getEmpPassword())){
-		// addFieldError("employee.empPassword", getText("error.empPassword"));
-		// }
-		// String ecode = employee.getEmpCode();
-		// String pass = employee.getEmpPassword();
-		// EmployeeDao empDao = new EmployeeDao();
-		// try {
-		// if (!empDao.loginEmployee(ecode, pass)){
-		// addFieldError("employee.empCode",getText("error.login"));
-		// }
-		// } catch (SQLException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+		boolean check = true;
+		if (employee.getEmpCode().trim().length() != 4) {
+			check = false;
+			addFieldError("employee.empCode", getText("error.empCode"));
+		}
+		if (employee.getEmpPassword().trim().isEmpty()) {
+			check = false;
+			addFieldError("employee.empPassword", getText("error.empPassword"));
+		}
+		if (check) {
+			String ecode = employee.getEmpCode();
+			String pass = employee.getEmpPassword();
+			EmployeeDao empDao = new EmployeeDao();
+			try {
+				if (!empDao.loginEmployee(ecode, pass)) {
+					addFieldError("employee.empCode", getText("error.login"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void setSession(Map<String, Object> session) {
@@ -72,7 +77,7 @@ public class LoginAction extends BaseAction implements ModelDriven<Object>, Sess
 
 	}
 
-//	public Date getCurrentDate(){
-//		return new Date();
-//	}
+	// public Date getCurrentDate(){
+	// return new Date();
+	// }
 }

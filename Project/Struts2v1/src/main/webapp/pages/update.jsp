@@ -6,19 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/plain; charset=UTF-8">
 
-<title>Register</title>
+<title>Update</title>
 <link rel="stylesheet" href="pages/css/register.css">
-<script type="text/javascript" src="pages/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="pages/js/register.js"></script>
 </head>
 <body>
-	<div class="global">
-		<h2 class="center">REGISTER</h2>
+	<div>
+		<h2>Update</h2>
 		<s:form method="post" theme="simple">
 			<s:include value="working.jsp"></s:include>
-			<div class="center submit">
+			<div>
 				<s:submit action="back" value="Back" align="left" />
-				<s:submit action="register1" value="Register" align="right" />
+				<s:submit action="registerInput" value="Update" align="right" />
 			</div>
 		</s:form>
 	</div>

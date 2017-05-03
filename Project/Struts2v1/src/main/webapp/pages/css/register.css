@@ -1,3 +1,38 @@
 br {
-  display: none;
+	display: none;
+}
+
+tr td:nth-child(1), tr td:nth-child(3) {
+	font-weight: bold;
+	width: 150px;
+}
+
+tr td:nth-child(2){
+	width: 200px;
+}
+body{
+	background-color: #FDF7D0;
+}
+tr td:nth-child(4) {
+	width: 130px;
+}
+.global {
+	border: solid 2px green;
+	border-radius: 10px;
+	width: 650px;
+	margin: 100px auto;
+	padding: 30px 40px;
+	background-color: #DAFAB6;
+}
+
+.center{
+	text-align: center;
+}
+
+.submit{
+	margin-top: 10px;
+}
+
+h2{
+	color: red;
 }

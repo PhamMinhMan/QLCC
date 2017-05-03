@@ -52,7 +52,7 @@ public class InputdateAction extends BaseAction implements SessionAware {
 	}
 
 	//truyen date qua register.jsp
-	public String getRegisterDate() {
+	public String getSdate() {
 		String date = dateFormat.format(getDate());
 		return date;
 	}
@@ -89,4 +89,14 @@ public class InputdateAction extends BaseAction implements SessionAware {
 	public ArrayList<String> getMinuteList() {
 		return Global.MINUTE;
 	}
+	
+	//truyen employeeName sang jsp file
+	public String getEmployeeName(){
+		return "Nguyễn Văn A";
+	}
+	
+	//truyen companyName sang jsp file
+		public String getCompanyName(){
+			return "Công ty ABC";
+		}
 }
