@@ -8,6 +8,7 @@
 
 <title>Register</title>
 <link rel="stylesheet" href="pages/css/register.css">
+<link rel="stylesheet" href="pages/css/style.css">
 <script type="text/javascript" src="pages/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="pages/js/register.js"></script>
 </head>

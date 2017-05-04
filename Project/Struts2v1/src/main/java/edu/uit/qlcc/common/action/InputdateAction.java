@@ -7,7 +7,10 @@ import java.util.Date;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
+import edu.uit.qlcc.common.Employee;
 import edu.uit.qlcc.common.Global;
+import edu.uit.qlcc.common.dao.CompanyDao;
+import edu.uit.qlcc.common.dao.EmployeeDao;
 
 public class InputdateAction extends BaseAction implements SessionAware {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +29,14 @@ public class InputdateAction extends BaseAction implements SessionAware {
 
 		System.out.println(dateFormat.format(calendar.getTime()));
 		session.put(SESSION_DATE, getDate());
-		System.out.println(empCode);
+//		EmployeeDao employeeDao = new EmployeeDao();
+//		Employee employee= employeeDao.getEmployeeByEmpcode(empCode);
+//		session.put(SESSION_EMPLOYEE_NAME, employee.getEmpName());
+//		String comName = CompanyDao.getCompanyNameByCompanyCode(employee.getComCode());
+//		session.put(SESSION_COMPANY_NAME, comName);
+		
+		session.put(SESSION_EMPLOYEE_NAME, "Nguyễn Văn A");
+		session.put(SESSION_COMPANY_NAME, "Công ty ABC");
 		return SUCCESS;
 	}
 

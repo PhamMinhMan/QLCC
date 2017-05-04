@@ -7,6 +7,8 @@ public class BaseAction extends ActionSupport{
 	
 	public static final String SESSION_EMPLOYEE_CODE ="empcode";
 	public static final String SESSION_DATE ="date";
+	public static final String SESSION_EMPLOYEE_NAME ="empname";
+	public static final String SESSION_COMPANY_NAME ="companyname";
 	
 
 }

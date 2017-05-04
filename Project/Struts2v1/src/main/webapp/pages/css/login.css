@@ -4,14 +4,7 @@
 	width:400px;
 	margin-bottom:8px;
 }
-.errors li{
-	list-style: none;
-}
 
-.errorMessage{
-	color: red;
-	font-style: italic;
-}
 .form {
 	border-radius: 25px;
     border: 2px solid #73AD21;

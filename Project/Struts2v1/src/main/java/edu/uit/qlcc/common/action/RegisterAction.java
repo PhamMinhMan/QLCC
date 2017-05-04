@@ -1,11 +1,13 @@
 package edu.uit.qlcc.common.action;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
+import edu.uit.qlcc.common.Global;
 import edu.uit.qlcc.common.Worktime;
 import edu.uit.qlcc.common.dao.WorktimeDao;
 
@@ -18,6 +20,21 @@ public class RegisterAction extends BaseAction implements SessionAware {
 	private String starttime_mm;
 	private String endtime_hh;
 	private String endtime_mm;
+
+	@Override
+	public void validate() {
+		if (session == null || session.get(SESSION_EMPLOYEE_CODE) == null || session.get(SESSION_DATE) == null) {
+			return;
+		}
+		String starttime = getStarttime_hh() + getStarttime_mm();
+		if (starttime.trim().length() != 0 && starttime.trim().length() != 4) {
+			addFieldError("starttime_hh", "StartTime không hợp lệ");
+		}
+		String endtime = getEndtime_hh() + getEndtime_mm();
+		if (endtime.trim().length() != 0 && endtime.trim().length() != 4) {
+			addFieldError("endtime_hh", "EndTime không hợp lệ");
+		}
+	}
 
 	public String doRegister1() throws Exception {
 		if (session == null || session.get(SESSION_EMPLOYEE_CODE) == null || session.get(SESSION_DATE) == null) {
@@ -42,7 +59,7 @@ public class RegisterAction extends BaseAction implements SessionAware {
 		String endtime = getEndtime_hh() + getEndtime_mm();
 		endtime = endtime != null ? endtime : "";
 		worktime.setEndTime(endtime);
-		
+
 		// WorktimeDao worktimeDao = new WorktimeDao();
 		// worktimeDao.insertWorktime(worktime);
 		return SUCCESS;
@@ -102,6 +119,31 @@ public class RegisterAction extends BaseAction implements SessionAware {
 	// nhan endtime_mm tu jsp
 	public void setEndtime_mm(String endtime_mm) {
 		this.endtime_mm = endtime_mm;
+	}
+
+	// truyen workingClassList qua jsp file
+	public Map<String, String> getWorkingClassList() {
+		return Global.WORKING_CLASS;
+	}
+
+	// truyen startClassList qua jsp file
+	public Map<String, String> getStartClassList() {
+		return Global.START_CLASS;
+	}
+
+	// truyen endClassList qua jsp file
+	public Map<String, String> getEndClassList() {
+		return Global.END_CLASS;
+	}
+
+	// truyen hourList qua jsp file
+	public ArrayList<String> getHourList() {
+		return Global.HOUR;
+	}
+
+	// truyen minuteList qua jsp file
+	public ArrayList<String> getMinuteList() {
+		return Global.MINUTE;
 	}
 
 }

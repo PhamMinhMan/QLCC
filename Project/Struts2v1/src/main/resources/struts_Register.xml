@@ -8,6 +8,7 @@
 		<action name="register1" class="edu.uit.qlcc.common.action.RegisterAction" method="doRegister1">
 			<interceptor-ref name="defaultStack" />
 			<result name="success">/pages/inputdate.jsp</result>
+			<result name="input">/pages/register.jsp</result>
 		</action>
 		
 		<action name="back" class="edu.uit.qlcc.common.action.RegisterAction" method="doBack">
