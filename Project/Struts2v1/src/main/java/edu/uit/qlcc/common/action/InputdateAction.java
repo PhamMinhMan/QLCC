@@ -24,10 +24,13 @@ public class InputdateAction extends BaseAction implements SessionAware {
 			return "session";
 		}
 		Date regDate = getDate();
+		regDate = dateFormat.parse(dateFormat.format(regDate));
 		Date curDate = new Date();
-		if (curDate.compareTo(regDate) > 0){
-			addActionError("Ngày đăng kí không được trước ngày hiện tại");
+		curDate = dateFormat.parse(dateFormat.format(curDate));
+		if (regDate.before(curDate)){
+			addActionError("Ngày đăng kí không được sớm hơn ngày hiện tại");
 			return INPUT;
+		} 
 		Date registerDate = getDate();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(registerDate);
