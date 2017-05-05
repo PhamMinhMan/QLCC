@@ -20,19 +20,62 @@ public class RegisterAction extends BaseAction implements SessionAware {
 	private String starttime_mm;
 	private String endtime_hh;
 	private String endtime_mm;
+	private String starttime_hh_default = "";   
+	private String starttime_mm_default = "";
+	private String endtime_hh_default = "";
+	private String endtime_mm_default = "";
+	private String workingClassDefault = LAM_VIEC_BINH_THUONG;
+	private String startClassDefault = CHUA_THIET_LAP;
+	private String endClassDefault = CHUA_THIET_LAP;
+	private String noteDefault = "";
 
 	@Override
 	public void validate() {
 		if (session == null || session.get(SESSION_EMPLOYEE_CODE) == null || session.get(SESSION_DATE) == null) {
 			return;
 		}
+		starttime_hh_default = getStarttime_hh();
+		starttime_mm_default = getStarttime_mm();
+		endtime_hh_default = getEndtime_hh();
+		endtime_mm_default = getEndtime_mm();
+		workingClassDefault = worktime.getWrkClass();
+		startClassDefault = worktime.getStartClass();
+		endClassDefault = worktime.getEndClass();
+		noteDefault = worktime.getNote();
 		String starttime = getStarttime_hh() + getStarttime_mm();
-		if (starttime.trim().length() != 0 && starttime.trim().length() != 4) {
-			addFieldError("starttime_hh", "StartTime không hợp lệ");
-		}
 		String endtime = getEndtime_hh() + getEndtime_mm();
+		if (starttime.trim().length() != 0 && starttime.trim().length() != 4) {
+			addFieldError("starttime_hh", "Start Time không hợp lệ");
+		}
+
 		if (endtime.trim().length() != 0 && endtime.trim().length() != 4) {
-			addFieldError("endtime_hh", "EndTime không hợp lệ");
+			addFieldError("endtime_hh", "End Time không hợp lệ");
+		}
+
+		if (starttime.trim().length() == 4 && endtime.trim().length() == 4) {
+			int start = Integer.parseInt(starttime);
+			int end = Integer.parseInt(endtime);
+			if (start >= end) {
+				addFieldError("starttime_hh", "Start Time phải nhỏ hơn End Time");
+				addFieldError("endtime_hh", "EndTime phải lớn hơn Start Time");
+			}
+		}
+
+		if (worktime.getWrkClass().equals(LAM_VIEC_BINH_THUONG)) {
+			if (worktime.getStartClass().equals(NGHI_BUOI_SANG)) {
+				addFieldError("worktime.startClass", "Làm việc bình thường thì không được nghỉ");
+			} else if (!worktime.getStartClass().equals(CHUA_THIET_LAP)) {
+				if (starttime.trim().length() == 0) {
+					addFieldError("starttime_hh", "Chưa thiết lập Start Time");
+				}
+			}
+			if (worktime.getEndClass().equals(NGHI_BUOI_CHIEU)) {
+				addFieldError("worktime.endClass", "Làm việc bình thường thì không được nghỉ");
+			} else if (!worktime.getEndClass().equals(CHUA_THIET_LAP)) {
+				if (endtime.trim().length() == 0) {
+					addFieldError("endtime_hh", "Chưa thiết lập End Time");
+				}
+			}
 		}
 	}
 
@@ -157,4 +200,70 @@ public class RegisterAction extends BaseAction implements SessionAware {
 		String sdate = dateFormat.format(calendar.getTime());
 		return sdate;
 	}
+
+	public String getStarttime_hh_default() {
+		return starttime_hh_default;
+	}
+
+	public void setStarttime_hh_default(String starttime_hh_default) {
+		this.starttime_hh_default = starttime_hh_default;
+	}
+
+	public String getStarttime_mm_default() {
+		return starttime_mm_default;
+	}
+
+	public void setStarttime_mm_default(String starttime_mm_default) {
+		this.starttime_mm_default = starttime_mm_default;
+	}
+
+	public String getEndtime_hh_default() {
+		return endtime_hh_default;
+	}
+
+	public void setEndtime_hh_default(String endtime_hh_default) {
+		this.endtime_hh_default = endtime_hh_default;
+	}
+
+	public String getEndtime_mm_default() {
+		return endtime_mm_default;
+	}
+
+	public void setEndtime_mm_default(String endtime_mm_default) {
+		this.endtime_mm_default = endtime_mm_default;
+	}
+
+	public String getWorkingClassDefault() {
+		return workingClassDefault;
+	}
+
+	public void setWorkingClassDefault(String workingClassDefault) {
+		this.workingClassDefault = workingClassDefault;
+	}
+
+	public String getStartClassDefault() {
+		return startClassDefault;
+	}
+
+	public void setStartClassDefault(String startClassDefault) {
+		this.startClassDefault = startClassDefault;
+	}
+
+	public String getEndClassDefault() {
+		return endClassDefault;
+	}
+
+	public void setEndClassDefault(String endClassDefault) {
+		this.endClassDefault = endClassDefault;
+	}
+
+	public String getNoteDefault() {
+		return noteDefault;
+	}
+
+	public void setNoteDefault(String noteDefault) {
+		this.noteDefault = noteDefault;
+	}
+	
+	
 }

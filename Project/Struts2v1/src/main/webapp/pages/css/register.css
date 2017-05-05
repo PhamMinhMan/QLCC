@@ -27,7 +27,7 @@ tr td:nth-child(4) {
 	width: 750px;
 	margin: 100px auto;
 	padding: 30px 40px;
-	background-color: #9FF049;
+	background-color: #4CC552;
 }
 
 .submit{
@@ -41,7 +41,7 @@ h2{
 .common{
 	border: solid 2px #76CE18;
 	border-radius: 20px;
-	width: 620px;
+	width: 650px;
 	margin: 10px auto;
 	padding: 30px 40px;
 	background-color: #C6FC8C;
