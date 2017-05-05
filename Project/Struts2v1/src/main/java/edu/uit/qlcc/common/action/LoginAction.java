@@ -11,7 +11,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
+
+import edu.uit.qlcc.common.Company;
 import edu.uit.qlcc.common.Employee;
+import edu.uit.qlcc.common.dao.CompanyDao;
 import edu.uit.qlcc.common.dao.EmployeeDao;
 
 public class LoginAction extends BaseAction implements ModelDriven<Object>, SessionAware {
@@ -37,11 +40,17 @@ public class LoginAction extends BaseAction implements ModelDriven<Object>, Sess
 		String pass = employee.getEmpPassword();
 		EmployeeDao empDao = new EmployeeDao();
 		if (empDao.loginEmployee(ecode, pass)) {
-			// Map<String, Object> session =
-			// ActionContext.getContext().getSession();
-			// HttpSession session =
-			// ServletActionContext.getRequest().getSession();
 			session.put(SESSION_EMPLOYEE_CODE, ecode);
+			EmployeeDao employeeDao = new EmployeeDao();
+			Employee employee = employeeDao.getEmployeeByEmpcode(ecode);
+			String empName = employee.getEmpName();
+			
+			session.put(SESSION_EMPLOYEE_NAME, empName);
+			String comCode = employee.getComCode();
+			System.out.println(comCode+"ccc");
+			CompanyDao companyDao = new CompanyDao();
+			String comName = companyDao.getCompanyNameByCompanyCode(comCode);
+			session.put(SESSION_COMPANY_NAME, comName);
 			return SUCCESS;
 		}
 		return ERROR;

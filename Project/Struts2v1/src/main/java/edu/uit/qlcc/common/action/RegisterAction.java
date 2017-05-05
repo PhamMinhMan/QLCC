@@ -60,9 +60,11 @@ public class RegisterAction extends BaseAction implements SessionAware {
 		endtime = endtime != null ? endtime : "";
 		worktime.setEndTime(endtime);
 
-		// WorktimeDao worktimeDao = new WorktimeDao();
-		// worktimeDao.insertWorktime(worktime);
-		return SUCCESS;
+		WorktimeDao worktimeDao = new WorktimeDao();
+		boolean result = worktimeDao.insertWorktime(worktime);
+		if (result)
+			return SUCCESS;
+		return ERROR;
 	}
 
 	public String doBack() {
@@ -146,4 +148,13 @@ public class RegisterAction extends BaseAction implements SessionAware {
 		return Global.MINUTE;
 	}
 
+	// truyen date qua register.jsp
+	public String getSdate() {
+		Date registerDate = (Date) session.get(SESSION_DATE);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(registerDate);
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		String sdate = dateFormat.format(calendar.getTime());
+		return sdate;
+	}
 }

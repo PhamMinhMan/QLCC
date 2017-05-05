@@ -18,6 +18,7 @@
 		<action name="search" class="edu.uit.qlcc.common.action.InputdateAction"
 			method="doSearch">
 			<interceptor-ref name="defaultStack" />
+			<result name="input">/pages/inputdate.jsp</result>
 			<result name="success">/pages/search.jsp</result>
 		</action>
 	</package>

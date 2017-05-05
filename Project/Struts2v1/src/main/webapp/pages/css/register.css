@@ -2,9 +2,14 @@ br {
 	display: none;
 }
 
-tr td:nth-child(1), tr td:nth-child(3) {
+tr td:nth-child(1){
 	font-weight: bold;
-	width: 150px;
+	width: 180px;
+}
+
+tr td:nth-child(3) {
+	font-weight: bold;
+	width: 120px;
 }
 
 tr td:nth-child(2){
@@ -14,7 +19,7 @@ body{
 	background-color: #F8FEF1;
 }
 tr td:nth-child(4) {
-	width: 130px;
+	width: 150px;
 }
 .global {
 	border: solid 2px green;
@@ -36,7 +41,7 @@ h2{
 .common{
 	border: solid 2px #76CE18;
 	border-radius: 20px;
-	width: 600px;
+	width: 620px;
 	margin: 10px auto;
 	padding: 30px 40px;
 	background-color: #C6FC8C;

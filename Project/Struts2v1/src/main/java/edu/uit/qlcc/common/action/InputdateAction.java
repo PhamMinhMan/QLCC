@@ -19,24 +19,16 @@ public class InputdateAction extends BaseAction implements SessionAware {
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
 	public String doRegister() throws Exception {
-		if (session == null || session.get(SESSION_EMPLOYEE_CODE) == null) {
+		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
+		if (session == null || empCode == null) {
 			return "session";
 		}
-		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		Date registerDate = getDate();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(registerDate);
 
 		System.out.println(dateFormat.format(calendar.getTime()));
 		session.put(SESSION_DATE, getDate());
-//		EmployeeDao employeeDao = new EmployeeDao();
-//		Employee employee= employeeDao.getEmployeeByEmpcode(empCode);
-//		session.put(SESSION_EMPLOYEE_NAME, employee.getEmpName());
-//		String comName = CompanyDao.getCompanyNameByCompanyCode(employee.getComCode());
-//		session.put(SESSION_COMPANY_NAME, comName);
-		
-		session.put(SESSION_EMPLOYEE_NAME, "Nguyễn Văn A");
-		session.put(SESSION_COMPANY_NAME, "Công ty ABC");
 		return SUCCESS;
 	}
 
@@ -61,14 +53,13 @@ public class InputdateAction extends BaseAction implements SessionAware {
 		this.date = date;
 	}
 
-	//truyen date qua register.jsp
+	// truyen date qua register.jsp
 	public String getSdate() {
 		String date = dateFormat.format(getDate());
 		return date;
 	}
-	
-	
-	//truyen date qua search.jsp
+
+	// truyen date qua search.jsp
 	public String getSearchDate() {
 		dateFormat = new SimpleDateFormat("yyyy/MM");
 		String date = dateFormat.format(getDate());
@@ -99,14 +90,14 @@ public class InputdateAction extends BaseAction implements SessionAware {
 	public ArrayList<String> getMinuteList() {
 		return Global.MINUTE;
 	}
-	
-	//truyen employeeName sang jsp file
-	public String getEmployeeName(){
+
+	// truyen employeeName sang jsp file
+	public String getEmployeeName() {
 		return "Nguyễn Văn A";
 	}
-	
-	//truyen companyName sang jsp file
-		public String getCompanyName(){
-			return "Công ty ABC";
-		}
+
+	// truyen companyName sang jsp file
+	public String getCompanyName() {
+		return "Công ty ABC";
+	}
 }

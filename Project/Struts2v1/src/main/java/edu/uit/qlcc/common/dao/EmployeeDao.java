@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import edu.uit.qlcc.common.Employee;
 
 public class EmployeeDao {
@@ -36,11 +38,37 @@ public class EmployeeDao {
 		return result;
 	}
 	
+//	public Employee getEmployeeByEmpcode(String empcode) throws SQLException{
+//		Employee employee = new Employee();
+//		String call = "{cal qlcc.getEmployeeByEmpcode(?)}";
+//		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
+//		CallableStatement cstmt = dbConnection.prepareCall(call);
+//		try {
+//			cstmt.setString(1, empcode);
+//			ResultSet rs = cstmt.executeQuery(call);
+//			if (rs.first()) {
+//				System.out.println("aa");
+//				employee = convertToEmployee(rs);
+//			}
+//		} catch (SQLException e) {
+//		} finally {
+//			if (cstmt != null) {
+//				cstmt.close();
+//				cstmt = null;
+//			}
+//			if (dbConnection != null) {
+//				dbConnection.close();
+//				dbConnection = null;
+//			}
+//		}
+//		return employee;
+//	}
+	
 	public Employee getEmployeeByEmpcode(String empcode) throws SQLException{
 		Employee employee = new Employee();
-		String call = "{cal getEmployeeByEmpcode(?)}";
+		String sql = "select * from employee where emp_code =? and flag_delete ='0'";
 		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
-		CallableStatement cstmt = dbConnection.prepareCall(call);
+		PreparedStatement cstmt = (PreparedStatement) dbConnection.prepareStatement(sql);
 		try {
 			cstmt.setString(1, empcode);
 			ResultSet rs = cstmt.executeQuery();

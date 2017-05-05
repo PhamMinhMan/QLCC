@@ -15,11 +15,11 @@
 				<table>
 					<tr>
 						<td>Company Name</td>
-						<td><s:property value="companyName" /></td>
+						<td><s:property value="#session.companyname" /></td>
 					</tr>
 					<tr>
 						<td>Employee Name</td>
-						<td><s:property value="employeeName" /></td>
+						<td><s:property value="#session.empname" /></td>
 						<td>Date</td>
 						<td>
 							<s:property value="searchDate" />

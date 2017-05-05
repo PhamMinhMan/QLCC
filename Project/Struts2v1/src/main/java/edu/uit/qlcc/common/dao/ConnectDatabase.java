@@ -5,10 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectDatabase {
+	private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
+	private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/qlcc";
+	private static final String DB_USER = "root";
+	private static final String DB_PASSWORD = "P@ssword";
 	private static ConnectDatabase instance = null;
 	static {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(DB_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -23,11 +27,9 @@ public class ConnectDatabase {
 	public Connection getConnection() {
 		Connection connection = null;
 		try {
-			String url = "jdbc:mysql://localhost:3306/qlcc";
-			String username = "root";
-			String password = "P@ssword";
-			connection = DriverManager.getConnection(url, username, password);
+			connection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
 		} catch (SQLException e) {
+			System.out.println("connect fail");
 			e.printStackTrace();
 		}
 		return connection;
