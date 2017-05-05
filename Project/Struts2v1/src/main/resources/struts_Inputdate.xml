@@ -9,6 +9,7 @@
 			method="doRegister">
 			<interceptor-ref name="defaultStack" />
 			<result name="success">/pages/register.jsp</result>
+			<result name="input">/pages/inputdate.jsp</result>
 		</action>
 		<action name="back" class="edu.uit.qlcc.common.action.InputdateAction"
 			method="doBack">
@@ -18,8 +19,8 @@
 		<action name="search" class="edu.uit.qlcc.common.action.InputdateAction"
 			method="doSearch">
 			<interceptor-ref name="defaultStack" />
-			<result name="input">/pages/inputdate.jsp</result>
 			<result name="success">/pages/search.jsp</result>
+			<result name="input">/pages/inputdate.jsp</result>
 		</action>
 	</package>
 </struts>
