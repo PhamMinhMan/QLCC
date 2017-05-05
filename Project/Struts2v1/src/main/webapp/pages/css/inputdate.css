@@ -1,0 +1,132 @@
+.errors {
+	background-color:#FFCCCC;
+	border:1px solid #CC0000;
+	width:200px;
+	margin-bottom:8px;
+}
+
+ .form {
+	border-radius: 25px;
+    border: 2px solid #73AD21;
+ 	background-color: #CCFBB7;
+    width: 400px;
+  /* height: 400px; */
+    padding: 20px;
+    
+}
+body{
+/* 	background-color: #e6ffe6; */
+}
+.module{
+	border-color: green;
+	border-width: 2px;
+	width: 400px;
+    height: 100%;
+	margin: 150px auto;
+	
+}
+
+td.tdLabel {
+/*     text-align: right; */
+/*     padding-right: 15px; */
+/*     height: 15px; */
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+tr td:nth-child(1) {
+	font-weight: bold;
+	font-size: 20px;
+	width: 150px;
+}
+/*tr td:nth-child(3) {
+	font-weight: bold;
+	width: 150px;
+}
+tr td:nth-child(2){
+	width: 150px;
+}
+tr td:nth-child(4) {
+	width: 150px;
+} */
+
+table.wwFormTable {
+    width: 100%;
+    margin: 0 auto;
+    margin-left: 15px;
+}
+
+.back{
+	margin-top: 10px;
+	width: 90px;
+	height: 30px;
+	padding: 3px 10px;
+	border-radius: 5px;
+	border: 1px solid black;
+	background-color:  #D9DBD5;
+	
+	color: #00000;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    
+   /* position: relative;
+    left: 0%; 
+    top: 48.9%; */
+    
+
+}
+
+.search{
+	margin-top: 10px;
+	width: 90px;
+	height: 30px;
+	padding: 3px 10px;
+	border-radius: 5px;
+	border: 1px solid orange;
+	background-color:  #ffb84d;
+	
+	color: #00000;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    
+   /* position: relative;
+    left: 52%; 
+    top: 48.9%;*/
+
+}
+
+.register{
+	margin-top: 10px;
+	width: 90px;
+	height: 30px;
+	padding: 3px 10px;
+	border-radius: 5px;
+	border: 1px solid black;
+	background-color:  #ffb84d;
+	
+	color: #00000;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    
+    /*  position: relative;
+    left:60%; 
+    top: 48.9%; */
+     
+}
+
+.back:hover, .back:focus {
+    background-color: #F8FAF3;
+    border-color: #00000;
+}
+
+.register:hover, .register:focus, .search:hover, .search.focus {
+    background-color: #F5DD02;
+    border: 1px solid orange;
+}
