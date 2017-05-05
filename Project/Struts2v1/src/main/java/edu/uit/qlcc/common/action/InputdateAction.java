@@ -23,6 +23,11 @@ public class InputdateAction extends BaseAction implements SessionAware {
 		if (session == null || empCode == null) {
 			return "session";
 		}
+		Date regDate = getDate();
+		Date curDate = new Date();
+		if (curDate.compareTo(regDate) > 0){
+			addActionError("Ngày đăng kí không được trước ngày hiện tại");
+			return INPUT;
 		Date registerDate = getDate();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(registerDate);
@@ -34,6 +39,12 @@ public class InputdateAction extends BaseAction implements SessionAware {
 
 	public String doSearch() {
 		session.put(SESSION_DATE, getDate());
+		Date regDate = getDate();
+		Date curDate = new Date();
+		if (regDate.compareTo(curDate) > 0){
+			addActionError("Ngày tìm kiếm không được sau ngày hiện tại");
+			return INPUT;
+		} 
 		return SUCCESS;
 	}
 
