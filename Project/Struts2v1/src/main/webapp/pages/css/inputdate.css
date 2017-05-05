@@ -1,8 +1,10 @@
 .errors {
-	background-color:#FFCCCC;
-	border:1px solid #CC0000;
-	width:200px;
+	
+	width:300px;
 	margin-bottom:8px;
+	margin-left: 50px;
+	text-align: center;
+s
 }
 
  .form {
@@ -72,12 +74,14 @@ table.wwFormTable {
     cursor: pointer;
     white-space: nowrap;
     
-   /* position: relative;
-    left: 0%; 
-    top: 48.9%; */
+   
+    margin-bottom: -60px;
+    /*left: 0%; 
+    top: 48.9%;*/
     
 
 }
+
 
 .search{
 	margin-top: 10px;
@@ -94,9 +98,9 @@ table.wwFormTable {
     cursor: pointer;
     white-space: nowrap;
     
-   /* position: relative;
-    left: 52%; 
-    top: 48.9%;*/
+  /*  margin-bottom : -60px; */
+    margin-top : 2px;
+
 
 }
 
@@ -106,7 +110,7 @@ table.wwFormTable {
 	height: 30px;
 	padding: 3px 10px;
 	border-radius: 5px;
-	border: 1px solid black;
+	border: 1px solid orange;
 	background-color:  #ffb84d;
 	
 	color: #00000;
@@ -115,10 +119,9 @@ table.wwFormTable {
     cursor: pointer;
     white-space: nowrap;
     
-    /*  position: relative;
-    left:60%; 
-    top: 48.9%; */
-     
+    margin-top : -33.5px;
+    
+  
 }
 
 .back:hover, .back:focus {
