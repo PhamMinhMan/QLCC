@@ -1,5 +1,6 @@
 package edu.uit.qlcc.common.action;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,14 +10,17 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import edu.uit.qlcc.common.Employee;
 import edu.uit.qlcc.common.Global;
+import edu.uit.qlcc.common.Worktime;
 import edu.uit.qlcc.common.dao.CompanyDao;
 import edu.uit.qlcc.common.dao.EmployeeDao;
+import edu.uit.qlcc.common.dao.WorktimeDao;
 
 public class InputdateAction extends BaseAction implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private Date date;
 	private Map<String, Object> session;
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+	ArrayList<Worktime> worktimes;
 
 	public String doRegister() throws Exception {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
@@ -40,14 +44,23 @@ public class InputdateAction extends BaseAction implements SessionAware {
 		return SUCCESS;
 	}
 
-	public String doSearch() {
+	public String doSearch() throws SQLException {
+		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
+		if (session == null || empCode == null) {
+			return "session";
+		} 
 		session.put(SESSION_DATE, getDate());
 		Date regDate = getDate();
 		Date curDate = new Date();
 		if (regDate.compareTo(curDate) > 0){
 			addActionError("Ngày tìm kiếm không được sau ngày hiện tại");
 			return INPUT;
-		} 
+		}
+		dateFormat = new SimpleDateFormat("yyyyMM");
+		String searchDate = dateFormat.format(getDate());
+		WorktimeDao worktimeDao = new WorktimeDao();
+		worktimes = worktimeDao.getWorktimeByMonth(empCode, searchDate);
+		System.out.println(worktimes.size());
 		return SUCCESS;
 	}
 
@@ -114,4 +127,14 @@ public class InputdateAction extends BaseAction implements SessionAware {
 	public String getCompanyName() {
 		return "Công ty ABC";
 	}
+
+	public ArrayList<Worktime> getWorktimes() {
+		return worktimes;
+	}
+
+	public void setWorktimes(ArrayList<Worktime> worktimes) {
+		this.worktimes = worktimes;
+	}
+	
+	
 }

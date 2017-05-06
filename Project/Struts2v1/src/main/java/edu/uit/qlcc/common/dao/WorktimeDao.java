@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.mysql.jdbc.PreparedStatement;
@@ -172,6 +173,38 @@ public class WorktimeDao {
 			}
 		}
 		return false;
+	}
+	
+	public ArrayList<Worktime> getWorktimeByMonth(String empcode, String yyyyMM) throws SQLException{
+		ArrayList<Worktime> worktimes = null;
+		String call = "{call getWorktimeByMonth(?,?)}";
+		Connection dbConnection = null;
+		CallableStatement caStatement = null;
+		try {
+		dbConnection = ConnectDatabase.getInstance().getConnection();
+		caStatement = dbConnection.prepareCall(call);
+		caStatement.setString(1, empcode);
+		caStatement.setString(2, yyyyMM);
+		ResultSet resultSet = caStatement.executeQuery();
+		worktimes = new ArrayList<Worktime>();
+		while (resultSet.next()){
+			worktimes.add(convertToWorktime(resultSet));
+			System.out.println(convertToWorktime(resultSet).getCalYmd());
+		}
+		} catch (SQLException e) {
+		} finally {
+			// Closing the CallableStatement object
+			if (caStatement != null) {
+				caStatement.close();
+				caStatement = null;
+			}
+			// Closing the Connection object
+			if (dbConnection != null) {
+				dbConnection.close();
+				dbConnection = null;
+			}
+		}
+		return worktimes;
 	}
 	
 	private Worktime convertToWorktime(ResultSet rSet) throws SQLException{
