@@ -58,8 +58,9 @@ public class InputdateAction extends BaseAction implements SessionAware {
 		}
 		dateFormat = new SimpleDateFormat("yyyyMM");
 		String searchDate = dateFormat.format(getDate());
-		WorktimeDao worktimeDao = new WorktimeDao();
-		worktimes = worktimeDao.getWorktimeByMonth(empCode, searchDate);
+		SearchLogic searchLogic = new SearchLogic();
+		//lay worktime tat ca cac ngay trong thang
+		worktimes = searchLogic.getWorktimeAllDateByMonth(empCode, searchDate);
 		System.out.println(worktimes.size());
 		return SUCCESS;
 	}

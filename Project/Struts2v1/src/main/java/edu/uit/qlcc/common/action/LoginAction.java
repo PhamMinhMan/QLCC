@@ -44,10 +44,8 @@ public class LoginAction extends BaseAction implements ModelDriven<Object>, Sess
 			EmployeeDao employeeDao = new EmployeeDao();
 			Employee employee = employeeDao.getEmployeeByEmpcode(ecode);
 			String empName = employee.getEmpName();
-			
 			session.put(SESSION_EMPLOYEE_NAME, empName);
 			String comCode = employee.getComCode();
-			System.out.println(comCode+"ccc");
 			CompanyDao companyDao = new CompanyDao();
 			String comName = companyDao.getCompanyNameByCompanyCode(comCode);
 			session.put(SESSION_COMPANY_NAME, comName);
