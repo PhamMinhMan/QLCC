@@ -8,7 +8,7 @@ public class ConnectDatabase {
 	private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
 	private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/qlcc";
 	private static final String DB_USER = "root";
-	private static final String DB_PASSWORD = "conga1234";
+	private static final String DB_PASSWORD = "P@ssword";
 	private static ConnectDatabase instance = null;
 	static {
 		try {

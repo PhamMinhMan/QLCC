@@ -16,8 +16,6 @@ public class SearchLogic {
 	public ArrayList<Worktime> getWorktimeAllDateByMonth(String empcode, String yyyyMM)
 			throws SQLException, ParseException {
 		ArrayList<Worktime> allworktimes = new ArrayList<Worktime>();
-		// ket qua tra ve
-
 		WorktimeDao worktimeDao = new WorktimeDao();
 		// danh sach worktime theo thang lay tu database
 		ArrayList<Worktime> worktimes = new ArrayList<Worktime>();
