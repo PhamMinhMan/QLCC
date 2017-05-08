@@ -14,8 +14,8 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import edu.uit.qlcc.common.Company;
 import edu.uit.qlcc.common.Employee;
-import edu.uit.qlcc.common.dao.CompanyDao;
-import edu.uit.qlcc.common.dao.EmployeeDao;
+import edu.uit.qlcc.common.dao.impl.CompanyDao;
+import edu.uit.qlcc.common.dao.impl.EmployeeDao;
 
 public class LoginAction extends BaseAction implements ModelDriven<Object>, SessionAware {
 	private static final long serialVersionUID = 1L;

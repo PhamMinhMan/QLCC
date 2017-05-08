@@ -9,7 +9,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import edu.uit.qlcc.common.Global;
 import edu.uit.qlcc.common.Worktime;
-import edu.uit.qlcc.common.dao.WorktimeDao;
+import edu.uit.qlcc.common.dao.impl.WorktimeDao;
 
 public class RegisterAction extends BaseAction implements SessionAware {
 	private static final long serialVersionUID = 1L;

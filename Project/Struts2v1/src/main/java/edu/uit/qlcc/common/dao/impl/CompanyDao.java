@@ -1,4 +1,4 @@
-package edu.uit.qlcc.common.dao;
+package edu.uit.qlcc.common.dao.impl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -9,8 +9,9 @@ import com.mysql.jdbc.PreparedStatement;
 
 import edu.uit.qlcc.common.Company;
 import edu.uit.qlcc.common.Employee;
+import edu.uit.qlcc.common.dao.inf.ICompanyDao;
 
-public class CompanyDao {
+public class CompanyDao implements ICompanyDao{
 	// public static String getCompanyNameByCompanyCode(String comCode) throws
 	// SQLException{
 	// String call = "{cal getNameCompanyByComcode(?)}";
@@ -40,7 +41,8 @@ public class CompanyDao {
 
 	public String getCompanyNameByCompanyCode(String comCode) throws SQLException {
 		String sql = "select com_name from company where com_code =?";
-		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
+		Connection dbConnection= null;
+		dbConnection = ConnectDatabase.getInstance().getConnection();
 		PreparedStatement cstmt = (PreparedStatement) dbConnection.prepareStatement(sql);
 		String comName = "";
 		try {

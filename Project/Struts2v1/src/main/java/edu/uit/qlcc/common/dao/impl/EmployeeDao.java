@@ -1,4 +1,4 @@
-package edu.uit.qlcc.common.dao;
+package edu.uit.qlcc.common.dao.impl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

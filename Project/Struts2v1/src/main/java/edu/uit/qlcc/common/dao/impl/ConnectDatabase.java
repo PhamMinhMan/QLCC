@@ -1,4 +1,4 @@
-package edu.uit.qlcc.common.dao;
+package edu.uit.qlcc.common.dao.impl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
