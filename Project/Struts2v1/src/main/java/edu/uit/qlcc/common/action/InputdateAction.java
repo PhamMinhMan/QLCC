@@ -1,6 +1,7 @@
 package edu.uit.qlcc.common.action;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,7 +45,7 @@ public class InputdateAction extends BaseAction implements SessionAware {
 		return SUCCESS;
 	}
 
-	public String doSearch() throws SQLException {
+	public String doSearch() throws SQLException, ParseException {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		if (session == null || empCode == null) {
 			return "session";

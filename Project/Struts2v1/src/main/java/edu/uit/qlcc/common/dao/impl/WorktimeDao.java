@@ -5,16 +5,18 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import com.mysql.jdbc.PreparedStatement;
 
 import edu.uit.qlcc.common.Worktime;
 
 public class WorktimeDao {
-	public Worktime getWorktimeByDate(String empcode, String yyyyMMdd) throws SQLException{
+	public Worktime getWorktimeByDate(String empcode, String yyyyMMdd) throws SQLException, ParseException{
 		Worktime worktime = new Worktime();
 		String call = "{cal getWorktimeByDate(?,?)}";
 		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
@@ -175,7 +177,7 @@ public class WorktimeDao {
 		return false;
 	}
 	
-	public ArrayList<Worktime> getWorktimeByMonth(String empcode, String yyyyMM) throws SQLException{
+	public ArrayList<Worktime> getWorktimeByMonth(String empcode, String yyyyMM) throws SQLException, ParseException{
 		ArrayList<Worktime> worktimes = null;
 		String call = "{call getWorktimeByMonth(?,?)}";
 		Connection dbConnection = null;
@@ -188,8 +190,10 @@ public class WorktimeDao {
 		ResultSet resultSet = caStatement.executeQuery();
 		worktimes = new ArrayList<Worktime>();
 		while (resultSet.next()){
-			worktimes.add(convertToWorktime(resultSet));
+			Worktime wt = convertToWorktime(resultSet);
+			worktimes.add(wt);
 			System.out.println(convertToWorktime(resultSet).getCalYmd());
+			
 		}
 		} catch (SQLException e) {
 		} finally {
@@ -204,15 +208,31 @@ public class WorktimeDao {
 				dbConnection = null;
 			}
 		}
+		System.out.println(worktimes.size());
 		return worktimes;
 	}
 	
-	private Worktime convertToWorktime(ResultSet rSet) throws SQLException{
+	private Worktime convertToWorktime(ResultSet rSet) throws SQLException, ParseException{
 		Worktime worktime = new Worktime();
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		Date cal_ymd_date = dateFormat.parse(rSet.getString("cal_ymd"));
+		cal.setTime(cal_ymd_date);
+		int dayOfmonth = cal.get(Calendar.DAY_OF_MONTH);
+		String dayOfmonthString = String.valueOf(dayOfmonth);
+		worktime.setDateOfmonth(dayOfmonthString);
+		dateFormat = new SimpleDateFormat("EEEE");
+		String day = dateFormat.format(cal_ymd_date);
+		worktime.setDateOfmonth(dayOfmonthString);
+		worktime.setDay(day);
 		worktime.setEmpCode(rSet.getString("emp_code"));
 		worktime.setCalYmd(rSet.getString("cal_ymd"));
 		worktime.setWrkClass(rSet.getString("wrk_class"));
+		worktime.setEndClass(rSet.getString("end_class"));
+		worktime.setEndTime(rSet.getString("end_time"));
 		worktime.setStartClass(rSet.getString("start_class"));
+		worktime.setStartTime(rSet.getString("start_time"));
+		worktime.setNote(rSet.getString("note"));
 		return worktime;
 	}
 	

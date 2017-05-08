@@ -1,6 +1,8 @@
 package edu.uit.qlcc.common;
 
 public class Worktime extends Base{
+	private String dateOfmonth;
+	private String day;
 	private String empCode;
 	private String calYmd;
 	private String wrkClass;
@@ -12,6 +14,8 @@ public class Worktime extends Base{
 
 	public Worktime() {
 		super();
+		dateOfmonth = "";
+		day = "";
 		empCode = "";
 		calYmd = "";
 		wrkClass = "";
@@ -86,4 +90,20 @@ public class Worktime extends Base{
 		this.note = note;
 	}
 
+	public String getDateOfmonth() {
+		return dateOfmonth;
+	}
+
+	public void setDateOfmonth(String dateOfmonth) {
+		this.dateOfmonth = dateOfmonth;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+	
 }
