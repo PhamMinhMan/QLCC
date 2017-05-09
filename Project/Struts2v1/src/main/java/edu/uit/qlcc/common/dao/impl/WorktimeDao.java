@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.log.Log;
 
 import edu.uit.qlcc.common.Global;
 import edu.uit.qlcc.common.Worktime;
@@ -134,8 +135,8 @@ public class WorktimeDao {
 			cstmt.setString(9, worktime.getEmpCode());
 			cstmt.setString(10, getCurrentDate());
 			int rs = cstmt.executeUpdate();
-			if (rs != 0) {
-				return false;
+			if (rs >= 0) {
+				return true;
 			}
 		} catch (SQLException e) {
 		} finally {
@@ -153,18 +154,51 @@ public class WorktimeDao {
 		return false;
 	}
 
+//	public boolean deleteWorktime(String comcode, String yyyyMMdd) throws SQLException {
+//		String call = "{cal deleteWorktime(?,?)}";
+//		Connection dbConnection = null;
+//		CallableStatement cstmt = null;
+//		try {
+//			dbConnection = ConnectDatabase.getInstance().getConnection();
+//			cstmt = dbConnection.prepareCall(call);
+//			cstmt.setString(1, comcode);
+//			cstmt.setString(2, yyyyMMdd);
+//			int rs = cstmt.executeUpdate();
+//			if (rs >= 0) {
+//				return true;
+//			}
+//		} catch (SQLException e) {
+//			System.out.println(e);
+//		} finally {
+//			// Closing the CallableStatement object
+//			if (cstmt != null) {
+//				cstmt.close();
+//				cstmt = null;
+//			}
+//			// Closing the Connection object
+//			if (dbConnection != null) {
+//				dbConnection.close();
+//				dbConnection = null;
+//			}
+//		}
+//		return false;
+//	}
+	
 	public boolean deleteWorktime(String comcode, String yyyyMMdd) throws SQLException {
-		String call = "{cal updateWorktime(?,?,?,?,?,?,?,?,?,?)}";
-		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
-		CallableStatement cstmt = dbConnection.prepareCall(call);
+		String call = "UPDATE worktime SET flag_delete= '1'  WHERE emp_code=? and cal_ymd=?;";
+		Connection dbConnection = null;
+		PreparedStatement cstmt = null;
 		try {
+			dbConnection = ConnectDatabase.getInstance().getConnection();
+			cstmt = (PreparedStatement) dbConnection.prepareStatement(call);
 			cstmt.setString(1, comcode);
 			cstmt.setString(2, yyyyMMdd);
 			int rs = cstmt.executeUpdate();
-			if (rs != 0) {
-				return false;
+			if (rs >= 0) {
+				return true;
 			}
 		} catch (SQLException e) {
+			System.out.println(e);
 		} finally {
 			// Closing the CallableStatement object
 			if (cstmt != null) {

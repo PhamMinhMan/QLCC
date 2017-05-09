@@ -8,6 +8,8 @@
 <link rel="stylesheet"
 	href="src/main/webapp/pages/css/bootstrap.min.css">
 <link rel="stylesheet" href="pages/css/search.css">
+<script type="text/javascript" src="pages/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="pages/js/search.js"></script>
 </head>
 <body>
 	<div>
@@ -62,10 +64,10 @@
 											<s:param name="dateMonth" value="dateOfmonth"></s:param>
 										</s:url> 
 										<s:a href="%{myurl1}">Update</s:a>
-									<td><s:url id="delete" action="delete" var="myurl">
+									<td><s:url  action="delete" var="myurl">
 											<s:param name="dateMonth" value="dateOfmonth"></s:param>
 										</s:url> 
-										<s:a href="%{myurl}">Delete</s:a>
+										<s:a id="delete_%{#stt.count}" cssClass="del" href="%{myurl}">Delete</s:a>
 									</td>
 								</tr>
 

@@ -84,16 +84,26 @@ public class SearchAction extends BaseAction implements SessionAware {
 		return "success";
 	}
 
-	public String doDelete() {
+	public String doDelete() throws SQLException, ParseException {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
-		Date registerDate = (Date) session.get(SESSION_DATE);
-		if (session == null || empCode == null || registerDate == null) {
+		Date date = (Date) session.get(SESSION_DATE);
+		if (session == null || empCode == null || date == null) {
 			return "session";
 		}
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
 				.get(ServletActionContext.HTTP_REQUEST);
-		System.out.println(request.getParameter("dateMonth"));
-		return SUCCESS;
+		String dateofmonth = request.getParameter("dateMonth");
+		dateFormat = new SimpleDateFormat("yyyyMM");
+		String yyyyMM = dateFormat.format(date);
+		if (dateofmonth.length() == 1)
+			dateofmonth = "0" + dateofmonth;
+		String yyyyMMdd = yyyyMM + dateofmonth;
+		boolean result = new WorktimeDao().deleteWorktime(empCode, yyyyMMdd);
+		if(result){
+			worktimes = new SearchLogic().getWorktimeAllDateByMonth(empCode, yyyyMM);
+			return SUCCESS;
+		}
+		return ERROR;
 	};
 
 	public String doUpdate() throws Exception {
