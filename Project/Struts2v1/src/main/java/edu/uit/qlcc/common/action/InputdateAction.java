@@ -29,13 +29,20 @@ public class InputdateAction extends BaseAction implements SessionAware {
 			return "session";
 		}
 		Date regDate = getDate();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 		regDate = dateFormat.parse(dateFormat.format(regDate));
 		Date curDate = new Date();
 		curDate = dateFormat.parse(dateFormat.format(curDate));
-		if (regDate.before(curDate)){
+		if (regDate.before(curDate)) {
 			addActionError("Ngày đăng kí không được sớm hơn ngày hiện tại");
 			return INPUT;
-		} 
+		}
+		WorktimeDao worktimeDao = new WorktimeDao();
+		String yyyyMMdd = dateFormat.format(regDate);
+		if (worktimeDao.checkDateAndEmp(empCode, yyyyMMdd) == false) {
+			addActionError("Ngày này đã được đăng kí");
+			return INPUT;
+		}
 		Date registerDate = getDate();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(registerDate);
@@ -49,18 +56,18 @@ public class InputdateAction extends BaseAction implements SessionAware {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		if (session == null || empCode == null) {
 			return "session";
-		} 
+		}
 		session.put(SESSION_DATE, getDate());
 		Date regDate = getDate();
 		Date curDate = new Date();
-		if (regDate.compareTo(curDate) > 0){
+		if (regDate.compareTo(curDate) > 0) {
 			addActionError("Ngày tìm kiếm không được sau ngày hiện tại");
 			return INPUT;
 		}
 		dateFormat = new SimpleDateFormat("yyyyMM");
 		String searchDate = dateFormat.format(getDate());
 		SearchLogic searchLogic = new SearchLogic();
-		//lay worktime tat ca cac ngay trong thang
+		// lay worktime tat ca cac ngay trong thang
 		worktimes = searchLogic.getWorktimeAllDateByMonth(empCode, searchDate);
 		System.out.println(worktimes.size());
 		return SUCCESS;
@@ -137,6 +144,5 @@ public class InputdateAction extends BaseAction implements SessionAware {
 	public void setWorktimes(ArrayList<Worktime> worktimes) {
 		this.worktimes = worktimes;
 	}
-	
-	
+
 }

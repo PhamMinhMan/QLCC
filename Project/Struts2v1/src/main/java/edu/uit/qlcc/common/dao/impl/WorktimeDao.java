@@ -250,4 +250,42 @@ public class WorktimeDao {
 		Calendar calendar = Calendar.getInstance();
 		return dateFormat.format(calendar.getTime());
 	}
+
+	public Boolean checkDateAndEmp(String empcode, String yyyyMMdd) throws SQLException {
+		String call = "{call getWorktimeByDate(?,?)}";
+		ArrayList<Worktime> worktimes = null;
+		Connection dbConnection = null;
+		CallableStatement caStatement = null;
+		try {
+			dbConnection = ConnectDatabase.getInstance().getConnection();
+			caStatement = dbConnection.prepareCall(call);
+			caStatement.setString(1, empcode);
+			caStatement.setString(2, yyyyMMdd);
+			ResultSet resultSet = caStatement.executeQuery();
+			/*while (resultSet.next()) {
+				if (resultSet.wasNull() == true)
+					return true;
+				
+				return false;*/
+			if (resultSet.next() == false){
+				return true;		
+			}
+			return false;
+			
+						
+		} catch (SQLException e) {
+		} finally {
+			// Closing the CallableStatement object
+			if (caStatement != null) {
+				caStatement.close();
+				caStatement = null;
+			}
+			// Closing the Connection object
+			if (dbConnection != null) {
+				dbConnection.close();
+				dbConnection = null;
+			}
+		}
+		return false;
+	}
 }
