@@ -17,7 +17,7 @@
 			<s:include value="working.jsp"></s:include>
 			<div>
 				<s:submit action="back" value="Back" align="left" />
-				<s:submit action="registerInput" value="Update" align="right" />
+				<s:submit action="update" value="Update" align="right" />
 			</div>
 		</s:form>
 	</div>

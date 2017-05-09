@@ -20,22 +20,24 @@ public class WorktimeDao {
 	public Worktime getWorktimeByDate(String empcode, String yyyyMMdd) throws SQLException, ParseException {
 		Worktime worktime = new Worktime();
 		String call = "{cal getWorktimeByDate(?,?)}";
-		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
-		CallableStatement cstmt = dbConnection.prepareCall(call);
+		Connection dbConnection = null;
+		CallableStatement caStatement = null;
 		try {
-			cstmt.setString(1, empcode);
-			cstmt.setString(2, yyyyMMdd);
-			ResultSet rs = cstmt.executeQuery();
+			dbConnection = ConnectDatabase.getInstance().getConnection();
+			caStatement = dbConnection.prepareCall(call);
+			caStatement.setString(1, empcode);
+			caStatement.setString(2, yyyyMMdd);
+			ResultSet rs = caStatement.executeQuery();
 			if (rs.next()) {
 				worktime = convertToWorktime(rs);
 			}
 		} catch (SQLException e) {
 		} finally {
-			// Closing the CallableStatement object
-			if (cstmt != null) {
-				cstmt.close();
-				cstmt = null;
-			}
+//			// Closing the CallableStatement object
+//			if (caStatement != null) {
+//				caStatement.close();
+//				caStatement = null;
+//			}
 			// Closing the Connection object
 			if (dbConnection != null) {
 				dbConnection.close();

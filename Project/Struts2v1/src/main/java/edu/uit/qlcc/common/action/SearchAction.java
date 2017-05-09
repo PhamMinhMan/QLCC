@@ -1,6 +1,7 @@
 package edu.uit.qlcc.common.action;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,7 +16,9 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionContext;
 
+import edu.uit.qlcc.common.Global;
 import edu.uit.qlcc.common.Worktime;
+import edu.uit.qlcc.common.dao.impl.WorktimeDao;
 
 public class SearchAction extends BaseAction implements SessionAware {
 	private static final long serialVersionUID = 1L;
@@ -24,9 +27,8 @@ public class SearchAction extends BaseAction implements SessionAware {
 	private String dateMonth;
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM");
 	ArrayList<Worktime> worktimes = new ArrayList<Worktime>();
+	Worktime wrktime = new Worktime();
 	
-	
-
 	public String getDateMonth() {
 		return dateMonth;
 	}
@@ -81,41 +83,53 @@ public class SearchAction extends BaseAction implements SessionAware {
 		updateSessionDateAndWorktimeList(empCode, month, year);
 		return "success";
 	}
-	
-	public String doDelete(){
+
+	public String doDelete() {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		Date registerDate = (Date) session.get(SESSION_DATE);
 		if (session == null || empCode == null || registerDate == null) {
 			return "session";
 		}
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
-                .get(ServletActionContext.HTTP_REQUEST);
+				.get(ServletActionContext.HTTP_REQUEST);
 		System.out.println(request.getParameter("dateMonth"));
 		return SUCCESS;
 	};
-	
+
 	public String doUpdate() throws Exception {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
-		Date registerDate = (Date) session.get(SESSION_DATE);
-		if (session == null || empCode == null || registerDate == null) {
+		Date date = (Date) session.get(SESSION_DATE);
+		if (session == null || empCode == null || date == null) {
 			return "session";
 		}
-		return "success";
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
+				.get(ServletActionContext.HTTP_REQUEST);
+		
+		String dateofmonth = request.getParameter("dateMonth");
+		dateFormat = new SimpleDateFormat("yyyyMM");
+		String yyyyMM = dateFormat.format(date);
+		if (dateofmonth.length() == 1)
+			dateofmonth = "0" + dateofmonth;
+		String yyyyMMdd = yyyyMM + dateofmonth;
+		dateFormat = new SimpleDateFormat("yyyyMMdd");
+		date = dateFormat.parse(yyyyMMdd);
+		session.put(SESSION_DATE, date);
+		wrktime = new WorktimeDao().getWorktimeByDate(empCode, yyyyMMdd);
+		return SUCCESS;
 	}
-
 
 	public ArrayList<Worktime> getWorktimes() {
 		return worktimes;
 	}
 
 	// truyen date qua search.jsp
-		public String getSearchDate() {
-			Date d = (Date) session.get(SESSION_DATE);
-			dateFormat = new SimpleDateFormat("yyyy/MM");
-			String date = dateFormat.format(d);
-			return date;
-		}
-	
+	public String getSearchDate() {
+		Date d = (Date) session.get(SESSION_DATE);
+		dateFormat = new SimpleDateFormat("yyyy/MM");
+		String date = dateFormat.format(d);
+		return date;
+	}
+
 	public String doPrint() throws Exception {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		Date registerDate = (Date) session.get(SESSION_DATE);
@@ -128,8 +142,9 @@ public class SearchAction extends BaseAction implements SessionAware {
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	
-	private void updateSessionDateAndWorktimeList(String empCode, int month, int year) throws ParseException, SQLException{
+
+	private void updateSessionDateAndWorktimeList(String empCode, int month, int year)
+			throws ParseException, SQLException {
 		String sMonth = String.valueOf(month);
 		if (sMonth.length() == 1) {
 			sMonth = "0" + sMonth;
@@ -141,5 +156,19 @@ public class SearchAction extends BaseAction implements SessionAware {
 		session.put(SESSION_DATE, d);
 		SearchLogic searchLogic = new SearchLogic();
 		worktimes = searchLogic.getWorktimeAllDateByMonth(empCode, yyyyMM);
+	}
+
+	public String getSdate() {
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		return dateFormat.format(session.get(SESSION_DATE));
+	}
+
+	// truyen workingClassList qua jsp file
+	public Map<String, String> getWorkingClassList() {
+		return Global.WORKING_CLASS;
+	}
+
+	public String getWorkingClassDefault() {
+		return wrktime.getWrkClass();
 	}
 }
