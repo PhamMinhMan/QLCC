@@ -58,7 +58,10 @@
 									<td><s:property value="startTime" /></td>
 									<td><s:property value="endTime" /></td>
 									<td><s:property value="note" /></td>
-									<td>Update</td>
+										<td><s:url id="update" action="update" var="myurl1">
+											<s:param name="dateMonth" value="dateOfmonth"></s:param>
+										</s:url> 
+										<s:a href="%{myurl1}">Update</s:a>
 									<td><s:url id="delete" action="delete" var="myurl">
 											<s:param name="dateMonth" value="dateOfmonth"></s:param>
 										</s:url> 

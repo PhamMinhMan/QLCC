@@ -93,6 +93,16 @@ public class SearchAction extends BaseAction implements SessionAware {
 		System.out.println(request.getParameter("dateMonth"));
 		return SUCCESS;
 	};
+	
+	public String doUpdate() throws Exception {
+		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
+		Date registerDate = (Date) session.get(SESSION_DATE);
+		if (session == null || empCode == null || registerDate == null) {
+			return "session";
+		}
+		return "success";
+	}
+
 
 	public ArrayList<Worktime> getWorktimes() {
 		return worktimes;
