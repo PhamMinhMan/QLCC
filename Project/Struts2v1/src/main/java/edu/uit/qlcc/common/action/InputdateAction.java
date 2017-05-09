@@ -31,7 +31,7 @@ public class InputdateAction extends BaseAction implements SessionAware {
 		Date regDate = getDate();
 		Date curDate = new Date();
 		if (regDate.compareTo(curDate) > 0){
-			addActionError("Ngày đăng kí không được sớm hơn ngày hiện tại");
+			addActionError("Ngày đăng kí không được sau ngày hiện tại");
 			return INPUT;
 		}
 		WorktimeDao worktimeDao = new WorktimeDao();
@@ -56,12 +56,12 @@ public class InputdateAction extends BaseAction implements SessionAware {
 		}
 		session.put(SESSION_DATE, getDate());
 	    Date regDate = getDate();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMM");
 		regDate = dateFormat.parse(dateFormat.format(regDate));
 		Date curDate = new Date();
 		curDate = dateFormat.parse(dateFormat.format(curDate));
-		if (regDate.before(curDate)) {
-			addActionError("Ngày tìm kiếm không được sau ngày hiện tại");
+		if (curDate.compareTo(regDate) < 0) {
+			addActionError("Tháng tìm kiếm không được sau tháng hiện tại");
 			return INPUT;
 		}
 		dateFormat = new SimpleDateFormat("yyyyMM");
