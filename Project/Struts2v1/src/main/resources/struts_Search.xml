@@ -22,5 +22,15 @@
 			<result name="success">/pages/search.jsp</result>
 			<result name="error">/pages/search.jsp</result>
 		</action>
+		
+		<action name="delete" class="edu.uit.qlcc.common.action.SearchAction" method="doDelete">
+			<result name="success">/pages/search.jsp</result>
+			<result name="error">/pages/search.jsp</result>
+		</action>
+		
+		<action name="update" class="edu.uit.qlcc.common.action.SearchAction" method="doUpdate">
+			<result name="success">/pages/update.jsp</result>
+			<result name="error">/pages/search.jsp</result>
+		</action>
 	</package>
 </struts>

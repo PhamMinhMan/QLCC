@@ -8,7 +8,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionContext;
 
 import edu.uit.qlcc.common.Worktime;
 
@@ -16,8 +21,19 @@ public class SearchAction extends BaseAction implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private String searchDate = "";
 	private Map<String, Object> session;
+	private String dateMonth;
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM");
 	ArrayList<Worktime> worktimes = new ArrayList<Worktime>();
+	
+	
+
+	public String getDateMonth() {
+		return dateMonth;
+	}
+
+	public void setDateMonth(String dateMonth) {
+		this.dateMonth = dateMonth;
+	}
 
 	public String doBack() throws Exception {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
@@ -65,6 +81,18 @@ public class SearchAction extends BaseAction implements SessionAware {
 		updateSessionDateAndWorktimeList(empCode, month, year);
 		return "success";
 	}
+	
+	public String doDelete(){
+		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
+		Date registerDate = (Date) session.get(SESSION_DATE);
+		if (session == null || empCode == null || registerDate == null) {
+			return "session";
+		}
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
+                .get(ServletActionContext.HTTP_REQUEST);
+		System.out.println(request.getParameter("dateMonth"));
+		return SUCCESS;
+	};
 
 	public ArrayList<Worktime> getWorktimes() {
 		return worktimes;

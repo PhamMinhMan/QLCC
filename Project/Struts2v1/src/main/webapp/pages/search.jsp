@@ -49,19 +49,25 @@
 						<tbody>
 							<s:iterator value="worktimes" status="stt">
 								<tr>
-									<td><s:property value="dateOfmonth"/></td>
-									<td><s:property value="day"/></td>
-									<td><s:property value="wrkClass"/></td>
-									<td><s:property value="startClass"/></td>
-									<td><s:property value="endClass"/></td>
-									<td><s:property value="startTime"/></td>
-									<td><s:property value="endTime"/></td>
-									<td><s:property value="note"/></td>
+									<td><s:property value="dateOfmonth" /></td>
+									<%-- 									<s:hidden name="" value="%{#rowStatus.count}"></s:hidden> --%>
+									<td><s:property value="day" /></td>
+									<td><s:property value="wrkClass" /></td>
+									<td><s:property value="startClass" /></td>
+									<td><s:property value="endClass" /></td>
+									<td><s:property value="startTime" /></td>
+									<td><s:property value="endTime" /></td>
+									<td><s:property value="note" /></td>
 									<td>Update</td>
-									<td>Delete</td>
+									<td><s:url id="delete" action="delete" var="myurl">
+											<s:param name="dateMonth" value="dateOfmonth"></s:param>
+										</s:url> 
+										<s:a href="%{myurl}">Delete</s:a>
+									</td>
 								</tr>
+
 							</s:iterator>
-							
+
 						</tbody>
 					</table>
 				</div>
