@@ -36,6 +36,8 @@ tr td:nth-child(4) {
 
 h2{
 	color: red;
+	text-align: center;
+	font-size: xx-large
 }
 
 .common{
@@ -45,4 +47,47 @@ h2{
 	margin: 10px auto;
 	padding: 30px 40px;
 	background-color: #C6FC8C;
+}
+.back{
+	margin-top: 10px;
+	width: 90px;
+	height: 30px;
+	padding: 3px 10px;
+	border-radius: 5px;
+	border: 1px solid black;
+	background-color:  #D9DBD5;
+	
+	color: #00000;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+}
+
+.update{
+	margin-top: 10px;
+	width: 90px;
+	height: 30px;
+	padding: 3px 10px;
+	border-radius: 5px;
+	border: 1px solid orange;
+	background-color:  #ffb84d;
+	
+	color: #00000;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    
+  
+}
+.back:hover, .back:focus {
+    background-color: #F8FAF3;
+    border-color: #00000;
+}
+
+.update:hover, .update:focus{
+    background-color: #F5DD02;
+    border: 1px solid orange;
 }

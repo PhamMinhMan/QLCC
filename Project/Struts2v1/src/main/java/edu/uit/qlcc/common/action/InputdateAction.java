@@ -35,16 +35,16 @@ public class InputdateAction extends BaseAction implements SessionAware {
 			return INPUT;
 		}
 		WorktimeDao worktimeDao = new WorktimeDao();
+		dateFormat = new SimpleDateFormat("yyyyMMdd");
 		String yyyyMMdd = dateFormat.format(regDate);
-		if (worktimeDao.checkDateAndEmp(empCode, yyyyMMdd) == false) {
+		if (worktimeDao.checkDateAndEmp(empCode, yyyyMMdd)) {
 			addActionError("Ngày này đã được đăng kí");
 			return INPUT;
 		}
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date registerDate = getDate();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(registerDate);
-
-		System.out.println(dateFormat.format(calendar.getTime()));
 		session.put(SESSION_DATE, getDate());
 		return SUCCESS;
 	}

@@ -5,8 +5,8 @@
 
 <struts>
 	<package name="A05_Update" extends="default">
-		<action name="update" class="edu.uit.qlcc.common.action.UpdateAction"
-			method="doUpdate">
+		<action name="update1" class="edu.uit.qlcc.common.action.UpdateAction"
+			method="doUpdate1">
 			<interceptor-ref name="defaultStack" />
 			<result name="success">/pages/search.jsp</result>
 			<result name="input">/pages/update.jsp</result>

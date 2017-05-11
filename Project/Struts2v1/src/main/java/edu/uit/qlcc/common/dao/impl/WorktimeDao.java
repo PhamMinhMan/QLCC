@@ -18,19 +18,47 @@ import edu.uit.qlcc.common.Global;
 import edu.uit.qlcc.common.Worktime;
 
 public class WorktimeDao {
+//	public Worktime getWorktimeByDate(String empcode, String yyyyMMdd) throws SQLException, ParseException {
+//		Worktime worktime = new Worktime();
+//		String call = "{cal getWorktimeByDate(?,?)}";
+//		Connection dbConnection = null;
+//		CallableStatement caStatement = null;
+//		try {
+//			dbConnection = ConnectDatabase.getInstance().getConnection();
+//			caStatement = dbConnection.prepareCall(call);
+//			caStatement.setString(1, empcode);
+//			caStatement.setString(2, yyyyMMdd);
+//			ResultSet rs = caStatement.executeQuery();
+//			if (rs.next()) {
+//				worktime = convertToWorktime(rs);
+//			}
+//		} catch (SQLException e) {
+//		} finally {
+////			// Closing the CallableStatement object
+////			if (caStatement != null) {
+////				caStatement.close();
+////				caStatement = null;
+////			}
+//			// Closing the Connection object
+//			if (dbConnection != null) {
+//				dbConnection.close();
+//				dbConnection = null;
+//			}
+//		}
+//		return worktime;
+//	}
+	
 	public Worktime getWorktimeByDate(String empcode, String yyyyMMdd) throws SQLException, ParseException {
 		Worktime worktime = new Worktime();
-		String call = "{cal getWorktimeByDate(?,?)}";
-		Connection dbConnection = null;
-		CallableStatement caStatement = null;
+		String call = "SELECT * FROM worktime WHERE emp_code = ? and cal_ymd = ?";
+		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
+		PreparedStatement cstmt = (PreparedStatement) dbConnection.prepareStatement(call);
 		try {
-			dbConnection = ConnectDatabase.getInstance().getConnection();
-			caStatement = dbConnection.prepareCall(call);
-			caStatement.setString(1, empcode);
-			caStatement.setString(2, yyyyMMdd);
-			ResultSet rs = caStatement.executeQuery();
+			cstmt.setString(1, empcode);
+			cstmt.setString(2, yyyyMMdd);
+			ResultSet rs = cstmt.executeQuery();
 			if (rs.next()) {
-				worktime = convertToWorktime(rs);
+				worktime = convertToWorktime1(rs);
 			}
 		} catch (SQLException e) {
 		} finally {
@@ -120,20 +148,21 @@ public class WorktimeDao {
 	}
 
 	public boolean updateWorktime(Worktime worktime) throws SQLException {
-		String call = "{cal updateWorktime(?,?,?,?,?,?,?,?,?,?)}";
+		String call = "UPDATE `qlcc`.`worktime` SET  `wrk_class`=?, `start_class`=?, `end_class`=?, `start_time`=?, `end_time`=?, `note`=? , `update_code`=?, `update_date`=? WHERE `emp_code`= ? and `cal_ymd` = ? and `flag_delete`=?" ;
 		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
 		CallableStatement cstmt = dbConnection.prepareCall(call);
 		try {
-			cstmt.setString(1, worktime.getEmpCode());
-			cstmt.setString(2, worktime.getCalYmd());
-			cstmt.setString(3, worktime.getWrkClass());
-			cstmt.setString(4, worktime.getStartClass());
-			cstmt.setString(5, worktime.getEndClass());
-			cstmt.setString(6, worktime.getStartTime());
-			cstmt.setString(7, worktime.getEndTime());
-			cstmt.setString(8, worktime.getNote());
+			cstmt.setString(1, worktime.getWrkClass());
+			cstmt.setString(2, worktime.getStartClass());
+			cstmt.setString(3, worktime.getEndClass());
+			cstmt.setString(4, worktime.getStartTime());
+			cstmt.setString(5, worktime.getEndTime());
+			cstmt.setString(6, worktime.getNote());
+			cstmt.setString(7, worktime.getEmpCode());
+			cstmt.setString(8, getCurrentDate());
 			cstmt.setString(9, worktime.getEmpCode());
-			cstmt.setString(10, getCurrentDate());
+			cstmt.setString(10, worktime.getCalYmd());
+			cstmt.setString(11, "0");
 			int rs = cstmt.executeUpdate();
 			if (rs >= 0) {
 				return true;
@@ -280,6 +309,36 @@ public class WorktimeDao {
 		worktime.setNote(rSet.getString("note"));
 		return worktime;
 	}
+	
+	private Worktime convertToWorktime1(ResultSet rSet) throws SQLException, ParseException {
+		Worktime worktime = new Worktime();
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		Date cal_ymd_date = dateFormat.parse(rSet.getString("cal_ymd"));
+		cal.setTime(cal_ymd_date);
+		int dayOfmonth = cal.get(Calendar.DAY_OF_MONTH);
+		String dayOfmonthString = String.valueOf(dayOfmonth);
+		worktime.setDateOfmonth(dayOfmonthString);
+		dateFormat = new SimpleDateFormat("EEEE");
+		String day = dateFormat.format(cal_ymd_date);
+		worktime.setDateOfmonth(dayOfmonthString);
+		worktime.setDay(day);
+		worktime.setEmpCode(rSet.getString("emp_code"));
+		worktime.setCalYmd(rSet.getString("cal_ymd"));
+		worktime.setWrkClass(rSet.getString("wrk_class"));
+		worktime.setEndClass(rSet.getString("end_class"));
+		String endtime = rSet.getString("end_time");
+		if (endtime.length() == 4) {
+			worktime.setEndTime(endtime);
+		}
+		worktime.setStartClass(rSet.getString("start_class"));
+		String starttime = rSet.getString("start_time");
+		if (starttime.length() == 4) {
+			worktime.setStartTime(starttime);
+		}
+		worktime.setNote(rSet.getString("note"));
+		return worktime;
+	}
 
 	private String getCurrentDate() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -288,22 +347,20 @@ public class WorktimeDao {
 	}
 
 	public Boolean checkDateAndEmp(String empcode, String yyyyMMdd) throws SQLException {
-		String call = "{call getWorktimeByDate(?,?)}";
-		ArrayList<Worktime> worktimes = null;
-		Connection dbConnection = null;
-		CallableStatement caStatement = null;
+		Worktime worktime = new Worktime();
+		String call = "SELECT * FROM worktime WHERE emp_code = ? and cal_ymd = ?";
+		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
+		PreparedStatement cstmt = (PreparedStatement) dbConnection.prepareStatement(call);
 		try {
-			dbConnection = ConnectDatabase.getInstance().getConnection();
-			caStatement = dbConnection.prepareCall(call);
-			caStatement.setString(1, empcode);
-			caStatement.setString(2, yyyyMMdd);
-			ResultSet resultSet = caStatement.executeQuery();
+			cstmt.setString(1, empcode);
+			cstmt.setString(2, yyyyMMdd);
+			ResultSet resultSet = cstmt.executeQuery();
 			/*while (resultSet.next()) {
 				if (resultSet.wasNull() == true)
 					return true;
 				
 				return false;*/
-			if (resultSet.next() == false){
+			if (resultSet.next()){
 				return true;		
 			}
 			return false;
@@ -312,9 +369,9 @@ public class WorktimeDao {
 		} catch (SQLException e) {
 		} finally {
 			// Closing the CallableStatement object
-			if (caStatement != null) {
-				caStatement.close();
-				caStatement = null;
+			if (cstmt != null) {
+				cstmt.close();
+				cstmt = null;
 			}
 			// Closing the Connection object
 			if (dbConnection != null) {

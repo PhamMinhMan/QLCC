@@ -177,8 +177,46 @@ public class SearchAction extends BaseAction implements SessionAware {
 	public Map<String, String> getWorkingClassList() {
 		return Global.WORKING_CLASS;
 	}
+	
+	public ArrayList<String> getHourList() {
+		return Global.HOUR;
+	}
 
+	// truyen minuteList qua jsp file
+	public ArrayList<String> getMinuteList() {
+		return Global.MINUTE;
+	}
+	public Map<String, String> getStartClassList() {
+		return Global.START_CLASS;
+	}
+	// truyen endClassList qua jsp file
+	public Map<String, String> getEndClassList() {
+		return Global.END_CLASS;
+	}
 	public String getWorkingClassDefault() {
 		return wrktime.getWrkClass();
+	}
+	public String getStartClassDefault() {
+		return wrktime.getStartClass();
+	}
+	public String getEndClassDefault() {
+		return wrktime.getEndClass();
+	}
+	public String getNoteDefault() {
+		return wrktime.getNote();
+	}
+	public String getStarttime_hh_default() {
+		return wrktime.getStartTime().substring(0,2);
+	}
+	public String getStarttime_mm_default() {
+		return wrktime.getStartTime().substring(2);
+	}
+	public String getEndtime_hh_default() {
+		return wrktime.getEndTime().substring(0,2);
+	}
+
+	public String getEndtime_mm_default() {
+		System.out.println(wrktime.getEndTime().substring(2));
+		return wrktime.getEndTime().substring(2);
 	}
 }
