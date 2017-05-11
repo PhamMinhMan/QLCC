@@ -10,44 +10,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
 import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.log.Log;
-
 import edu.uit.qlcc.common.Global;
 import edu.uit.qlcc.common.Worktime;
 
 public class WorktimeDao {
-//	public Worktime getWorktimeByDate(String empcode, String yyyyMMdd) throws SQLException, ParseException {
-//		Worktime worktime = new Worktime();
-//		String call = "{cal getWorktimeByDate(?,?)}";
-//		Connection dbConnection = null;
-//		CallableStatement caStatement = null;
-//		try {
-//			dbConnection = ConnectDatabase.getInstance().getConnection();
-//			caStatement = dbConnection.prepareCall(call);
-//			caStatement.setString(1, empcode);
-//			caStatement.setString(2, yyyyMMdd);
-//			ResultSet rs = caStatement.executeQuery();
-//			if (rs.next()) {
-//				worktime = convertToWorktime(rs);
-//			}
-//		} catch (SQLException e) {
-//		} finally {
-////			// Closing the CallableStatement object
-////			if (caStatement != null) {
-////				caStatement.close();
-////				caStatement = null;
-////			}
-//			// Closing the Connection object
-//			if (dbConnection != null) {
-//				dbConnection.close();
-//				dbConnection = null;
-//			}
-//		}
-//		return worktime;
-//	}
-	
 	public Worktime getWorktimeByDate(String empcode, String yyyyMMdd) throws SQLException, ParseException {
 		Worktime worktime = new Worktime();
 		String call = "SELECT * FROM worktime WHERE emp_code = ? and cal_ymd = ?";
@@ -62,12 +29,10 @@ public class WorktimeDao {
 			}
 		} catch (SQLException e) {
 		} finally {
-//			// Closing the CallableStatement object
 //			if (caStatement != null) {
 //				caStatement.close();
 //				caStatement = null;
 //			}
-			// Closing the Connection object
 			if (dbConnection != null) {
 				dbConnection.close();
 				dbConnection = null;
@@ -133,12 +98,10 @@ public class WorktimeDao {
 			}
 		} catch (SQLException e) {
 		} finally {
-			// Closing the CallableStatement object
 			if (cstmt != null) {
 				cstmt.close();
 				cstmt = null;
 			}
-			// Closing the Connection object
 			if (dbConnection != null) {
 				dbConnection.close();
 				dbConnection = null;
@@ -169,12 +132,10 @@ public class WorktimeDao {
 			}
 		} catch (SQLException e) {
 		} finally {
-			// Closing the CallableStatement object
 			if (cstmt != null) {
 				cstmt.close();
 				cstmt = null;
 			}
-			// Closing the Connection object
 			if (dbConnection != null) {
 				dbConnection.close();
 				dbConnection = null;
@@ -229,12 +190,10 @@ public class WorktimeDao {
 		} catch (SQLException e) {
 			System.out.println(e);
 		} finally {
-			// Closing the CallableStatement object
 			if (cstmt != null) {
 				cstmt.close();
 				cstmt = null;
 			}
-			// Closing the Connection object
 			if (dbConnection != null) {
 				dbConnection.close();
 				dbConnection = null;
@@ -258,23 +217,18 @@ public class WorktimeDao {
 			while (resultSet.next()) {
 				Worktime wt = convertToWorktime(resultSet);
 				worktimes.add(wt);
-				System.out.println(convertToWorktime(resultSet).getCalYmd());
-
 			}
 		} catch (SQLException e) {
 		} finally {
-			// Closing the CallableStatement object
 			if (caStatement != null) {
 				caStatement.close();
 				caStatement = null;
 			}
-			// Closing the Connection object
 			if (dbConnection != null) {
 				dbConnection.close();
 				dbConnection = null;
 			}
 		}
-		System.out.println(worktimes.size());
 		return worktimes;
 	}
 
@@ -347,7 +301,7 @@ public class WorktimeDao {
 	}
 
 	public Boolean checkDateAndEmp(String empcode, String yyyyMMdd) throws SQLException {
-		Worktime worktime = new Worktime();
+		//Worktime worktime = new Worktime();
 		String call = "SELECT * FROM worktime WHERE emp_code = ? and cal_ymd = ?";
 		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
 		PreparedStatement cstmt = (PreparedStatement) dbConnection.prepareStatement(call);
@@ -355,11 +309,6 @@ public class WorktimeDao {
 			cstmt.setString(1, empcode);
 			cstmt.setString(2, yyyyMMdd);
 			ResultSet resultSet = cstmt.executeQuery();
-			/*while (resultSet.next()) {
-				if (resultSet.wasNull() == true)
-					return true;
-				
-				return false;*/
 			if (resultSet.next()){
 				return true;		
 			}

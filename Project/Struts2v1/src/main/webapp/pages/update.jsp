@@ -18,7 +18,7 @@
 		<s:form method="post" theme="simple">
 			<s:include value="working.jsp"></s:include>
 			<div>
-				<s:submit action="back" value="Back" align="center" cssClass="back"/>
+				<s:submit action="backUpdate" value="Back" align="center" cssClass="back"/>
 				<s:submit action="update1" value="Update" align="center" cssClass="update"/>
 			</div>
 		</s:form>

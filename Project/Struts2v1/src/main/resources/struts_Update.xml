@@ -6,16 +6,17 @@
 <struts>
 	<package name="A05_Update" extends="default">
 		<action name="update1" class="edu.uit.qlcc.common.action.UpdateAction"
-			method="doUpdate1">
+			method="doUpdate">
 			<interceptor-ref name="defaultStack" />
 			<result name="success">/pages/search.jsp</result>
 			<result name="input">/pages/update.jsp</result>
 			<result name="error">/pages/update.jsp</result>
 		</action>
-		<action name="back" class="edu.uit.qlcc.common.action.UpdateAction"
+		<action name="backUpdate" class="edu.uit.qlcc.common.action.UpdateAction"
 			method="doBack">
 			<interceptor-ref name="defaultStack" />
 			<result name="success">/pages/search.jsp</result>
+			<result name="input">/pages/search.jsp</result>
 		</action>
 	</package>
 </struts>

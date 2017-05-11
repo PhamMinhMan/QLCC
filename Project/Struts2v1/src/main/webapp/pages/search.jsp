@@ -5,8 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/plain; charset=UTF-8">
 <title>Search</title>
-<link rel="stylesheet"
-	href="src/main/webapp/pages/css/bootstrap.min.css">
+<link rel="stylesheet" href="pages/css/bootstrap.min.css">
 <link rel="stylesheet" href="pages/css/search.css">
 <script type="text/javascript" src="pages/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="pages/js/search.js"></script>
@@ -18,14 +17,15 @@
 			<div>
 				<table>
 					<tr>
-						<td>Company Name</td>
+						<td>Company Name:</td>
 						<td><s:property value="#session.companyname" /></td>
 					</tr>
 					<tr>
-						<td>Employee Name</td>
+						<td>Employee Name:</td>
 						<td><s:property value="#session.empname" /></td>
-						<td>Date</td>
-						<td><s:property value="searchDate" /></td>
+						<td>Date:</td>
+<%-- 						<td id="date"><s:property value="searchDate" /></td> --%>
+						<td id="date"><s:date name="date" format="yyyy/MM" /></td>
 					</tr>
 				</table>
 			</div>
@@ -60,15 +60,20 @@
 									<td><s:property value="startTime" /></td>
 									<td><s:property value="endTime" /></td>
 									<td><s:property value="note" /></td>
+									<s:set name="check" value="wrkClass" />
+									<s:if test="%{#check!=''}">
 										<td><s:url id="update" action="update" var="myurl1">
-											<s:param name="dateMonth" value="dateOfmonth"></s:param>
-										</s:url> 
-										<s:a href="%{myurl1}">Update</s:a>
-									<td><s:url  action="delete" var="myurl">
-											<s:param name="dateMonth" value="dateOfmonth"></s:param>
-										</s:url> 
-										<s:a id="delete_%{#stt.count}" cssClass="del" href="%{myurl}">Delete</s:a>
-									</td>
+												<s:param name="dateMonth" value="dateOfmonth"></s:param>
+											</s:url> <s:a href="%{myurl1}">Update</s:a>
+										<td><s:url action="delete" var="myurl">
+												<s:param name="dateMonth" value="dateOfmonth"></s:param>
+											</s:url> <s:a id="delete_%{#stt.count}" cssClass="del"
+												href="%{myurl}">Delete</s:a></td>
+									</s:if>
+									<s:else>
+										<td></td>
+										<td></td>
+									</s:else>
 								</tr>
 
 							</s:iterator>
@@ -81,7 +86,7 @@
 				<s:submit action="back" value="Back" align="left" />
 				<s:submit action="print" value="Print" />
 				<s:submit action="previous" value="Previous Month" />
-				<s:submit action="next" value="Next Month" />
+				<s:submit action="next" value="Next Month" id="next" />
 			</div>
 		</s:form>
 	</div>

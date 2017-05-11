@@ -8,12 +8,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
-
-import edu.uit.qlcc.common.Employee;
 import edu.uit.qlcc.common.Global;
 import edu.uit.qlcc.common.Worktime;
-import edu.uit.qlcc.common.dao.impl.CompanyDao;
-import edu.uit.qlcc.common.dao.impl.EmployeeDao;
 import edu.uit.qlcc.common.dao.impl.WorktimeDao;
 
 public class InputdateAction extends BaseAction implements SessionAware {
@@ -26,7 +22,7 @@ public class InputdateAction extends BaseAction implements SessionAware {
 	public String doRegister() throws Exception {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		if (session == null || empCode == null) {
-			return "session";
+			return SESSION;
 		}
 		Date regDate = getDate();
 		Date curDate = new Date();
@@ -52,7 +48,7 @@ public class InputdateAction extends BaseAction implements SessionAware {
 	public String doSearch() throws SQLException, ParseException {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		if (session == null || empCode == null) {
-			return "session";
+			return SESSION;
 		}
 		session.put(SESSION_DATE, getDate());
 	    Date regDate = getDate();
@@ -69,11 +65,14 @@ public class InputdateAction extends BaseAction implements SessionAware {
 		SearchLogic searchLogic = new SearchLogic();
 		// lay worktime tat ca cac ngay trong thang
 		worktimes = searchLogic.getWorktimeAllDateByMonth(empCode, searchDate);
-		System.out.println(worktimes.size());
 		return SUCCESS;
 	}
 
 	public String doBack() {
+		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
+		if (session == null || empCode == null) {
+			return SESSION;
+		}
 		return SUCCESS;
 	}
 
@@ -87,19 +86,6 @@ public class InputdateAction extends BaseAction implements SessionAware {
 
 	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	// truyen date qua register.jsp
-	public String getSdate() {
-		String date = dateFormat.format(getDate());
-		return date;
-	}
-
-	// truyen date qua search.jsp
-	public String getSearchDate() {
-		dateFormat = new SimpleDateFormat("yyyy/MM");
-		String date = dateFormat.format(getDate());
-		return date;
 	}
 
 	// truyen workingClassList qua jsp file
@@ -125,16 +111,6 @@ public class InputdateAction extends BaseAction implements SessionAware {
 	// truyen minuteList qua jsp file
 	public ArrayList<String> getMinuteList() {
 		return Global.MINUTE;
-	}
-
-	// truyen employeeName sang jsp file
-	public String getEmployeeName() {
-		return "Nguyễn Văn A";
-	}
-
-	// truyen companyName sang jsp file
-	public String getCompanyName() {
-		return "Công ty ABC";
 	}
 
 	public ArrayList<Worktime> getWorktimes() {

@@ -1,34 +1,28 @@
 package edu.uit.qlcc.common.action;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
-
 import com.opensymphony.xwork2.ActionContext;
-
 import edu.uit.qlcc.common.Global;
 import edu.uit.qlcc.common.Worktime;
 import edu.uit.qlcc.common.dao.impl.WorktimeDao;
 
 public class SearchAction extends BaseAction implements SessionAware {
 	private static final long serialVersionUID = 1L;
-	private String searchDate = "";
 	private Map<String, Object> session;
 	private String dateMonth;
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM");
 	ArrayList<Worktime> worktimes = new ArrayList<Worktime>();
 	Worktime wrktime = new Worktime();
-	
+
 	public String getDateMonth() {
 		return dateMonth;
 	}
@@ -41,7 +35,7 @@ public class SearchAction extends BaseAction implements SessionAware {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		Date registerDate = (Date) session.get(SESSION_DATE);
 		if (session == null || empCode == null || registerDate == null) {
-			return "session";
+			return SESSION;
 		}
 		return "success";
 	}
@@ -50,7 +44,7 @@ public class SearchAction extends BaseAction implements SessionAware {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		Date registerDate = (Date) session.get(SESSION_DATE);
 		if (session == null || empCode == null || registerDate == null) {
-			return "session";
+			return SESSION;
 		}
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(registerDate);
@@ -69,7 +63,7 @@ public class SearchAction extends BaseAction implements SessionAware {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		Date registerDate = (Date) session.get(SESSION_DATE);
 		if (session == null || empCode == null || registerDate == null) {
-			return "session";
+			return SESSION;
 		}
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(registerDate);
@@ -81,14 +75,14 @@ public class SearchAction extends BaseAction implements SessionAware {
 			year--;
 		}
 		updateSessionDateAndWorktimeList(empCode, month, year);
-		return "success";
+		return SUCCESS;
 	}
 
 	public String doDelete() throws SQLException, ParseException {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		Date date = (Date) session.get(SESSION_DATE);
 		if (session == null || empCode == null || date == null) {
-			return "session";
+			return SESSION;
 		}
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
 				.get(ServletActionContext.HTTP_REQUEST);
@@ -99,7 +93,7 @@ public class SearchAction extends BaseAction implements SessionAware {
 			dateofmonth = "0" + dateofmonth;
 		String yyyyMMdd = yyyyMM + dateofmonth;
 		boolean result = new WorktimeDao().deleteWorktime(empCode, yyyyMMdd);
-		if(result){
+		if (result) {
 			worktimes = new SearchLogic().getWorktimeAllDateByMonth(empCode, yyyyMM);
 			return SUCCESS;
 		}
@@ -110,11 +104,11 @@ public class SearchAction extends BaseAction implements SessionAware {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		Date date = (Date) session.get(SESSION_DATE);
 		if (session == null || empCode == null || date == null) {
-			return "session";
+			return SESSION;
 		}
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
 				.get(ServletActionContext.HTTP_REQUEST);
-		
+
 		String dateofmonth = request.getParameter("dateMonth");
 		dateFormat = new SimpleDateFormat("yyyyMM");
 		String yyyyMM = dateFormat.format(date);
@@ -132,11 +126,8 @@ public class SearchAction extends BaseAction implements SessionAware {
 		return worktimes;
 	}
 
-	// truyen date qua search.jsp
-	public String getSearchDate() {
-		Date d = (Date) session.get(SESSION_DATE);
-		dateFormat = new SimpleDateFormat("yyyy/MM");
-		String date = dateFormat.format(d);
+	public Date getDate() {
+		Date date = (Date) session.get(SESSION_DATE);
 		return date;
 	}
 
@@ -144,9 +135,9 @@ public class SearchAction extends BaseAction implements SessionAware {
 		String empCode = (String) session.get(SESSION_EMPLOYEE_CODE);
 		Date registerDate = (Date) session.get(SESSION_DATE);
 		if (session == null || empCode == null || registerDate == null) {
-			return "session";
+			return SESSION;
 		}
-		return "success";
+		return SUCCESS;
 	}
 
 	public void setSession(Map<String, Object> session) {
@@ -168,16 +159,16 @@ public class SearchAction extends BaseAction implements SessionAware {
 		worktimes = searchLogic.getWorktimeAllDateByMonth(empCode, yyyyMM);
 	}
 
-	public String getSdate() {
-		dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		return dateFormat.format(session.get(SESSION_DATE));
-	}
+//	public String getSdate() {
+//		dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//		return dateFormat.format(session.get(SESSION_DATE));
+//	}
 
 	// truyen workingClassList qua jsp file
 	public Map<String, String> getWorkingClassList() {
 		return Global.WORKING_CLASS;
 	}
-	
+
 	public ArrayList<String> getHourList() {
 		return Global.HOUR;
 	}
@@ -186,37 +177,57 @@ public class SearchAction extends BaseAction implements SessionAware {
 	public ArrayList<String> getMinuteList() {
 		return Global.MINUTE;
 	}
+
 	public Map<String, String> getStartClassList() {
 		return Global.START_CLASS;
 	}
+
 	// truyen endClassList qua jsp file
 	public Map<String, String> getEndClassList() {
 		return Global.END_CLASS;
 	}
+
 	public String getWorkingClassDefault() {
 		return wrktime.getWrkClass();
 	}
+
 	public String getStartClassDefault() {
 		return wrktime.getStartClass();
 	}
+
 	public String getEndClassDefault() {
 		return wrktime.getEndClass();
 	}
+
 	public String getNoteDefault() {
 		return wrktime.getNote();
 	}
+
 	public String getStarttime_hh_default() {
-		return wrktime.getStartTime().substring(0,2);
+		if (wrktime.getStartTime().length() == 4) {
+			return wrktime.getStartTime().substring(0, 2);
+		}
+		return "";
 	}
+
 	public String getStarttime_mm_default() {
-		return wrktime.getStartTime().substring(2);
+		if (wrktime.getStartTime().length() == 4) {
+			return wrktime.getStartTime().substring(2);
+		}
+		return "";
 	}
+
 	public String getEndtime_hh_default() {
-		return wrktime.getEndTime().substring(0,2);
+		if (wrktime.getEndTime().length() == 4) {
+			return wrktime.getEndTime().substring(0, 2);
+		}
+		return "";
 	}
 
 	public String getEndtime_mm_default() {
-		System.out.println(wrktime.getEndTime().substring(2));
-		return wrktime.getEndTime().substring(2);
+		if (wrktime.getEndTime().length() == 4) {
+			return wrktime.getEndTime().substring(2);
+		}
+		return "";
 	}
 }
