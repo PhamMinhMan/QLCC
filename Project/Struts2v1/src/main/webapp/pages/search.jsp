@@ -83,7 +83,7 @@
 				</div>
 			</div>
 			<div>
-				<s:submit action="back" value="Back" align="left" />
+				<s:submit action="back" value="Back" align="left" cssClass="back"/>
 				<s:submit action="print" value="Print" />
 				<s:submit action="previous" value="Previous Month" />
 				<s:submit action="next" value="Next Month" id="next" />
