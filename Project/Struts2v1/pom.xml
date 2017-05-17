@@ -42,6 +42,49 @@
 			<artifactId>struts2-dojo-plugin</artifactId>
 			<version>2.3.20</version>
 		</dependency>
+
+		<!-- Hibernate core -->
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.10.Final</version>
+		</dependency>
+
+
+		<!-- Hibernate core library dependency start -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<!-- Hibernate core library dependency end -->
+
+		<!-- Hibernate query library dependency start -->
+		<dependency>
+			<groupId>antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>2.7.7</version>
+		</dependency>
+		<!-- Hibernate query library dependency end -->
 	</dependencies>
 
 	<build>

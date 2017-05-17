@@ -8,8 +8,9 @@ import java.sql.SQLException;
 import com.mysql.jdbc.PreparedStatement;
 
 import edu.uit.qlcc.common.Employee;
+import edu.uit.qlcc.common.dao.inf.IEmployeeDao;
 
-public class EmployeeDao {
+public class EmployeeDao implements IEmployeeDao{
 	public boolean loginEmployee(String empcode, String password) throws SQLException {
 		String call = "{cal loginEmployee(?,?)}";
 		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
@@ -38,32 +39,7 @@ public class EmployeeDao {
 		return result;
 	}
 	
-//	public Employee getEmployeeByEmpcode(String empcode) throws SQLException{
-//		Employee employee = new Employee();
-//		String call = "{cal qlcc.getEmployeeByEmpcode(?)}";
-//		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
-//		CallableStatement cstmt = dbConnection.prepareCall(call);
-//		try {
-//			cstmt.setString(1, empcode);
-//			ResultSet rs = cstmt.executeQuery(call);
-//			if (rs.first()) {
-//				System.out.println("aa");
-//				employee = convertToEmployee(rs);
-//			}
-//		} catch (SQLException e) {
-//		} finally {
-//			if (cstmt != null) {
-//				cstmt.close();
-//				cstmt = null;
-//			}
-//			if (dbConnection != null) {
-//				dbConnection.close();
-//				dbConnection = null;
-//			}
-//		}
-//		return employee;
-//	}
-	
+
 	public Employee getEmployeeByEmpcode(String empcode) throws SQLException{
 		Employee employee = new Employee();
 		String sql = "select * from employee where emp_code =? and flag_delete ='0'";

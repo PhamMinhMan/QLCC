@@ -13,8 +13,9 @@ import java.util.Date;
 import com.mysql.jdbc.PreparedStatement;
 import edu.uit.qlcc.common.Global;
 import edu.uit.qlcc.common.Worktime;
+import edu.uit.qlcc.common.dao.inf.IWorktimeDao;
 
-public class WorktimeDao {
+public class WorktimeDao implements IWorktimeDao{
 	public Worktime getWorktimeByDate(String empcode, String yyyyMMdd) throws SQLException, ParseException {
 		Worktime worktime = new Worktime();
 		String call = "SELECT * FROM worktime WHERE emp_code = ? and cal_ymd = ?";
@@ -40,41 +41,6 @@ public class WorktimeDao {
 		}
 		return worktime;
 	}
-
-	// public boolean insertWorktime(Worktime worktime) throws SQLException{
-	// String call = "{cal insertWorktime(?,?,?,?,?,?,?,?,?,?)}";
-	// Connection dbConnection = ConnectDatabase.getInstance().getConnection();
-	// CallableStatement cstmt = dbConnection.prepareCall(call);
-	// try {
-	// cstmt.setString(1, worktime.getEmpCode());
-	// cstmt.setString(2, worktime.getCalYmd());
-	// cstmt.setString(3, worktime.getWrkClass());
-	// cstmt.setString(4, worktime.getStartClass());
-	// cstmt.setString(5, worktime.getEndClass());
-	// cstmt.setString(6, worktime.getStartTime());
-	// cstmt.setString(7, worktime.getEndTime());
-	// cstmt.setString(8, worktime.getNote());
-	// cstmt.setString(9, worktime.getEmpCode());
-	// cstmt.setString(10, getCurrentDate());
-	// int rs = cstmt.executeUpdate();
-	// if (rs!=0) {
-	// return true;
-	// }
-	// } catch (SQLException e) {
-	// } finally {
-	// // Closing the CallableStatement object
-	// if (cstmt != null) {
-	// cstmt.close();
-	// cstmt = null;
-	// }
-	// // Closing the Connection object
-	// if (dbConnection != null) {
-	// dbConnection.close();
-	// dbConnection = null;
-	// }
-	// }
-	// return false;
-	// }
 
 	public boolean insertWorktime(Worktime worktime) throws SQLException {
 		String call = "INSERT INTO `qlcc`.`worktime` (`emp_code`, `cal_ymd`, `wrk_class`, `start_class`, `end_class`, `start_time`, `end_time`, `note`, `create_code`, `create_date`, `flag_delete`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
