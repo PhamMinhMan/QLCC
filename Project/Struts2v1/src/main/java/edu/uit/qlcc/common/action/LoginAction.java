@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
@@ -35,7 +39,7 @@ public class LoginAction extends BaseAction implements ModelDriven<Object>, Sess
 	}
 
 	@Override
-	public String execute() throws SQLException {
+	public String execute() throws SQLException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException, SystemException {
 		String ecode = employee.getEmpCode();
 		String pass = employee.getEmpPassword();
 		EmployeeDao empDao = new EmployeeDao();

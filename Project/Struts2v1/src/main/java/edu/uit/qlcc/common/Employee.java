@@ -1,6 +1,6 @@
 package edu.uit.qlcc.common;
 
-public class Employee extends Base{
+public class Employee extends Base implements java.io.Serializable{
 	private String empCode;
 	private String empName;
 	private String comCode;
