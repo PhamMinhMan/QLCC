@@ -18,8 +18,8 @@
 		<s:form method="post" theme="simple">
 			<s:include value="working.jsp"></s:include>
 			<div class="center submit">
-				<s:submit action="back" value="Back" align="left" />
-				<s:submit action="register1" value="Register" align="right" />
+				<s:submit action="back" value="Back" align="left" cssClass="back"/>
+				<s:submit action="register1" value="Register" align="right" cssClass="update" />
 			</div>
 		</s:form>
 	</div>

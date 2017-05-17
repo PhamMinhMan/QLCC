@@ -1,16 +1,16 @@
 .errors {
 	background-color:#FFCCCC;
-	border:1px solid #CC0000;
+	border:1px solid #CE1836;
 	width:400px;
 	margin-bottom:8px;
 }
 
 .form {
 	border-radius: 25px;
-    border: 2px solid #73AD21;
- 	background-color: #CCFBB7;
+    border: 2px solid #009989;
+ 	background-color: #FFFFFF;
     width: 400px;
-/*     height: 200px; */
+  /* height: 400px; */
     padding: 20px;
     
 }
@@ -18,7 +18,7 @@ body{
 /* 	background-color: #e6ffe6; */
 }
 .module{
-	border-color: green;
+	border-color: #009989;
 	border-width: 2px;
 	width: 400px;
     height: 100%;
@@ -49,12 +49,15 @@ table.wwFormTable {
 	padding: 3px 10px;
 	font-weight: bold;
 	border-radius: 5px;
-	border: 2px solid orange;
-	background-color:  #ffb84d;
+	border: 1px solid #EDB92E;
+	background-color: rgba(237,185,46,.25);
 }
+.login:hover, .login:focus {
+    background-color: #F5DD02;
+    border: 1px solid #EDB92E;
 
 input[type="text"], input[type="password"]{
-	border: 1px solid orange;
+	border: 1px solid #EDB92E;
     border-radius: 5px;
     height: 22px;
     margin-bottom: 3px;

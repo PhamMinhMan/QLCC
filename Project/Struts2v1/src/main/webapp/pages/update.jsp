@@ -13,13 +13,13 @@
 <script type="text/javascript" src="pages/js/register.js"></script>
 </head>
 <body>
-	<div>
-		<h2>Update</h2>
+	<div class="global">
+		<h2 class="center">Update</h2>
 		<s:form method="post" theme="simple">
 			<s:include value="working.jsp"></s:include>
-			<div>
-				<s:submit action="backUpdate" value="Back" align="center" cssClass="back"/>
-				<s:submit action="update1" value="Update" align="center" cssClass="update"/>
+			<div class="center submit">
+				<s:submit action="backUpdate" value="Back" align="left" cssClass="back"/>
+				<s:submit action="update1" value="Update" align="right" cssClass="update"/>
 			</div>
 		</s:form>
 	</div>

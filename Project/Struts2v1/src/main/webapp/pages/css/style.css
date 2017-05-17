@@ -1,5 +1,5 @@
 h1 {
-	color: #006400;
+	color: #009989;
 	text-align: center;
 }
 
@@ -12,7 +12,7 @@ li{
 }
 
 .errorMessage{
-	color: red;
+	color: #CE1836;
 	font-style: italic;
 	margin: 0px;
 	padding-left: 0px;
