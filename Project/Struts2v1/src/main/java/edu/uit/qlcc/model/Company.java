@@ -1,4 +1,4 @@
-package edu.uit.qlcc.common;
+package edu.uit.qlcc.model;
 
 public class Company extends Base {
 	private String comCode;

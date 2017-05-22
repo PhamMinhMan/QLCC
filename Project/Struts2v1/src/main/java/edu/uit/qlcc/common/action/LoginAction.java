@@ -16,10 +16,10 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
-import edu.uit.qlcc.common.Company;
-import edu.uit.qlcc.common.Employee;
 import edu.uit.qlcc.common.dao.impl.CompanyDao;
 import edu.uit.qlcc.common.dao.impl.EmployeeDao;
+import edu.uit.qlcc.model.Company;
+import edu.uit.qlcc.model.Employee;
 
 public class LoginAction extends BaseAction implements ModelDriven<Object>, SessionAware {
 	private static final long serialVersionUID = 1L;

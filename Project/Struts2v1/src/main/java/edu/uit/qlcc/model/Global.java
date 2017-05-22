@@ -1,4 +1,4 @@
-package edu.uit.qlcc.common;
+package edu.uit.qlcc.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;

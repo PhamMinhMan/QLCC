@@ -7,7 +7,7 @@ import javax.transaction.HeuristicRollbackException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 
-import edu.uit.qlcc.common.Employee;
+import edu.uit.qlcc.model.Employee;
 
 public interface IEmployeeDao {
 	public boolean loginEmployee(String empcode, String password) throws SQLException;

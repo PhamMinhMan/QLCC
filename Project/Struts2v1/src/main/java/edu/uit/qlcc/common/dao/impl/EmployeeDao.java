@@ -1,6 +1,4 @@
 package edu.uit.qlcc.common.dao.impl;
-
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,18 +16,18 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.mysql.jdbc.CallableStatement;
 import com.mysql.jdbc.PreparedStatement;
 
-import edu.uit.qlcc.common.Employee;
-import edu.uit.qlcc.common.HibernateUtil;
 import edu.uit.qlcc.common.dao.inf.IEmployeeDao;
-import edu.uit.qlcc.common.listener.HibernateListener;
+import edu.uit.qlcc.model.Employee;
+import edu.uit.qlcc.model.HibernateUtil;
 
 public class EmployeeDao implements IEmployeeDao {
 	public boolean loginEmployee(String empcode, String password) throws SQLException {
 		String call = "{cal loginEmployee(?,?)}";
 		Connection dbConnection = ConnectDatabase.getInstance().getConnection();
-		CallableStatement cstmt = dbConnection.prepareCall(call);
+		CallableStatement cstmt = (CallableStatement) dbConnection.prepareCall(call);
 		Boolean result = false;
 		try {
 			cstmt.setString(1, empcode);
@@ -109,15 +107,5 @@ public class EmployeeDao implements IEmployeeDao {
 		return employee;
 	}
 
-	public ArrayList<Employee> getEmployee() throws Exception {
 
-		// get hibernate session from the servlet context
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext()
-				.getAttribute(HibernateListener.KEY_NAME);
-
-		Session session = sessionFactory.openSession();
-		ArrayList<Employee> employeelist = (ArrayList<Employee>) session.createQuery("from employee").list();
-		return employeelist;
-
-	}
 }

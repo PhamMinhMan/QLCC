@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import com.mysql.jdbc.PreparedStatement;
-import edu.uit.qlcc.common.Global;
-import edu.uit.qlcc.common.Worktime;
+
 import edu.uit.qlcc.common.dao.inf.IWorktimeDao;
+import edu.uit.qlcc.model.Global;
+import edu.uit.qlcc.model.Worktime;
 
 public class WorktimeDao implements IWorktimeDao{
 	public Worktime getWorktimeByDate(String empcode, String yyyyMMdd) throws SQLException, ParseException {

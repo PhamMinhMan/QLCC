@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import edu.uit.qlcc.common.Worktime;
+import edu.uit.qlcc.model.Worktime;
 
 public interface IWorktimeDao {
 	public Worktime getWorktimeByDate(String empcode, String yyyyMMdd) throws SQLException, ParseException;

@@ -1,4 +1,4 @@
-package edu.uit.qlcc.common;
+package edu.uit.qlcc.model;
 
 public class Worktime extends Base{
 	private String dateOfmonth;

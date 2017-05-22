@@ -1,4 +1,4 @@
-package edu.uit.qlcc.common;
+package edu.uit.qlcc.model;
 
 public class Employee extends Base implements java.io.Serializable{
 	private String empCode;

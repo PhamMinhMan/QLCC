@@ -8,9 +8,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
-import edu.uit.qlcc.common.Global;
-import edu.uit.qlcc.common.Worktime;
+
 import edu.uit.qlcc.common.dao.impl.WorktimeDao;
+import edu.uit.qlcc.model.Global;
+import edu.uit.qlcc.model.Worktime;
 
 public class InputdateAction extends BaseAction implements SessionAware {
 	private static final long serialVersionUID = 1L;

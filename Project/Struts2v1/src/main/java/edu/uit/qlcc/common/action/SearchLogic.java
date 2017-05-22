@@ -9,8 +9,8 @@ import java.util.Date;
 
 import org.omg.CORBA.portable.ValueBase;
 
-import edu.uit.qlcc.common.Worktime;
 import edu.uit.qlcc.common.dao.impl.WorktimeDao;
+import edu.uit.qlcc.model.Worktime;
 
 public class SearchLogic {
 	public ArrayList<Worktime> getWorktimeAllDateByMonth(String empcode, String yyyyMM)
