@@ -5,9 +5,9 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 	<!-- Database Configuration -->
 	<import resource="DataSource.xml"/>
-	<import resource="HibernateSessionFactory.xml"/>
+<!-- 	<import resource="HibernateSessionFactory.xml"/> -->
 
 	<!-- Beans Declaration -->
-<!-- 	<import resource="com/mkyong/customer/spring/CustomerBean.xml"/> -->
+<!-- 	<import resource="edu/uit/qlcc/spring/CompanyBean.xml"/> -->
 
 </beans>

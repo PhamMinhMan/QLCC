@@ -1,6 +1,6 @@
 package edu.uit.qlcc.model;
 
-public class Company extends Base {
+public class Company extends Base implements java.io.Serializable {
 	private String comCode;
 	private String comName;
 

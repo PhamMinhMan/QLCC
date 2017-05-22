@@ -18,17 +18,20 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import edu.uit.qlcc.common.dao.impl.CompanyDao;
 import edu.uit.qlcc.common.dao.impl.EmployeeDao;
+import edu.uit.qlcc.common.service.impl.CompanyService;
 import edu.uit.qlcc.model.Company;
 import edu.uit.qlcc.model.Employee;
 
 public class LoginAction extends BaseAction implements ModelDriven<Object>, SessionAware {
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> session;
+	CompanyService companyService = new CompanyService();
 	Employee employee = new Employee();
 
 	public Object getModel() {
 		return employee;
 	}
+	
 
 	public Employee getEmployee() {
 		return employee;
@@ -36,6 +39,10 @@ public class LoginAction extends BaseAction implements ModelDriven<Object>, Sess
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	
+	public void setCompanyService(CompanyService companyService){
+		this.companyService = companyService;
 	}
 
 	@Override
@@ -50,8 +57,7 @@ public class LoginAction extends BaseAction implements ModelDriven<Object>, Sess
 			String empName = employee.getEmpName();
 			session.put(SESSION_EMPLOYEE_NAME, empName);
 			String comCode = employee.getComCode();
-			CompanyDao companyDao = new CompanyDao();
-			String comName = companyDao.getCompanyNameByCompanyCode(comCode);
+			String comName = companyService.getCompanyNameByCompanyCode(comCode);
 			session.put(SESSION_COMPANY_NAME, comName);
 			return SUCCESS;
 		}

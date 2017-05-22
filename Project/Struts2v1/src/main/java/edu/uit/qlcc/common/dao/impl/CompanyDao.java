@@ -1,12 +1,17 @@
 package edu.uit.qlcc.common.dao.impl;
 
 import java.sql.Connection;
+
+import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.mysql.jdbc.PreparedStatement;
 import edu.uit.qlcc.common.dao.inf.ICompanyDao;
 
-public class CompanyDao implements ICompanyDao{
+public class CompanyDao extends HibernateDaoSupport implements ICompanyDao {
+	SessionFactory sessionFactory;
+
 	public String getCompanyNameByCompanyCode(String comCode) throws SQLException {
 		String sql = "select com_name from company where com_code =?";
 		Connection dbConnection= null;
