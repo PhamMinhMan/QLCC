@@ -1,10 +1,17 @@
 package edu.uit.qlcc.model;
 
+import javax.persistence.Column;
+
 public class Base {
+	@Column(name = "create_code")
 	private String createCode;
+	@Column(name = "create_date")
 	private String createDate;
+	@Column(name = "update_code")
 	private String updateCode;
+	@Column(name = "update_date")
 	private String updateDate;
+	@Column(name = "flag_delete")
 	private String flagDelete;
 
 	public Base() {

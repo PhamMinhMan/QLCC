@@ -1,22 +1,24 @@
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\inf\IEmployeeDao.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\impl\CompanyDao.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\CharsetFilter.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\inf\IWorktimeDao.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\Worktime.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\InputdateAction.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\impl\WorktimeDao.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\impl\EmployeeDao.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\Company.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\LoginAction.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\Base.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\inf\ICompanyDao.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\HibernateUtil.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\RegisterAction.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\Employee.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\Global.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\impl\ConnectDatabase.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\BaseAction.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\interceptor\SessionInterceptor.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\UpdateAction.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\SearchAction.java
-C:\Users\Tra0.nou\Documents\ĐỒ án\New folder (5)\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\SearchLogic.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\service\impl\CompanyService.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\UpdateAction.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\interceptor\SessionInterceptor.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\SearchLogic.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\HibernateUtil.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\Employee.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\Worktime.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\Company.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\Base.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\impl\CompanyDao.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\CharsetFilter.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\model\Global.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\inf\IWorktimeDao.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\BaseAction.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\LoginAction.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\impl\WorktimeDao.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\RegisterAction.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\impl\ConnectDatabase.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\impl\EmployeeDao.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\inf\ICompanyDao.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\InputdateAction.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\action\SearchAction.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\dao\inf\IEmployeeDao.java
+F:\THUCHANH\HK8\DoAnNganh\QLver3\QLCC\Project\Struts2v1\src\main\java\edu\uit\qlcc\common\service\inf\ICompanyService.java

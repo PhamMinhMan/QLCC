@@ -62,12 +62,32 @@
 		<!-- </dependency> -->
 
 		<!-- Hibernate core -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.hibernate</groupId> -->
+		<!-- <artifactId>hibernate</artifactId> -->
+		<!-- <version>3.2.7.ga</version> -->
+		<!-- </dependency> -->
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate</artifactId>
-			<version>3.2.7.ga</version>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.2.Final</version>
 		</dependency>
 
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.1.GA</version>
+		</dependency>
+		
+		<!-- /*chu y*/ -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<!-- /*chu y*/ -->
+		
 		<!-- Hibernate core library dependency start -->
 		<dependency>
 			<groupId>dom4j</groupId>
